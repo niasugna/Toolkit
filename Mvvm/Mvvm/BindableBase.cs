@@ -5,16 +5,6 @@ using System.Runtime.CompilerServices;
 
 namespace Pollux.Mvvm
 {
-    public abstract class ViewModel<T> : BindableBase where T : DependencyObject
-    {
-        public T View { get; private set; }
-        public ViewModel(T view)
-        {
-            this.View = view;
-            (this.View as FrameworkElement).DataContext = this;
-        }
-    }
-
     public abstract class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interactivity;
@@ -268,7 +270,27 @@ namespace Pollux.Behavior
 
         }
     }
+    public class Async
+    {
 
+
+        public static DependencyProperty  GetAsyncResult(DependencyObject obj)
+        {
+            return (DependencyProperty )obj.GetValue(AsyncResultProperty);
+        }
+
+        public static void SetAsyncResult(DependencyObject obj, DependencyProperty  value)
+        {
+            obj.SetValue(AsyncResultProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for AsyncResult.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AsyncResultProperty =
+            DependencyProperty.RegisterAttached("AsyncResult", typeof(DependencyProperty ), typeof(Async), new PropertyMetadata(null));
+
+        
+        
+    }
     public class EventToMethod
     {
         public static string GetMessage(DependencyObject obj)
@@ -365,11 +387,23 @@ namespace Pollux.Behavior
 
             try
             {
+                var fe = this.AssociatedObject as FrameworkElement;
+                var root = fe.FindVisualTreeRoot();
                 FrameworkElement view = this.AssociatedObject.FindVisualParent<UserControl>();
-
+                 
                 if(view == null)
                     view = this.AssociatedObject.FindVisualParent<Window>();
 
+                //template??
+                if (view == null)
+                {
+                    
+                    view = (fe.GetSelfAndAncestors().Last() as FrameworkElement).Parent as FrameworkElement;
+                }
+                //if (fe.TemplatedParent != null)
+                //{
+                //    var p = ContentOperations.GetParent(fe.TemplatedParent as ContentElement);
+                //}
                 if (view == null)
                     return;
 
@@ -487,5 +521,107 @@ namespace Pollux.Behavior
  
     
 
+    }
+
+
+    //https://www.thomaslevesque.com/tag/markup-extension/
+    //<Button Content="Click me" Click="{my:EventBinding OnClick}" />
+
+    //http://www.jonathanantoine.com/2011/09/23/wpf-4-5s-markupextension-invoke-a-method-on-the-viewmodel-datacontext-when-an-event-is-raised/
+    //Usage:
+    //<Grid PreviewMouseDown="{custMarkup:Call MyMethodToCallOnTheViewModel}" />
+    public class Call : MarkupExtension
+    {
+        public string ActionName { get; set; }
+
+        public Call(string actionName) { ActionName = actionName; }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            IProvideValueTarget targetProvider = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+            if (targetProvider == null)
+                throw new InvalidOperationException(@"The CallAction extension can't retrieved the IProvideValueTarget service.");
+
+            var target = targetProvider.TargetObject as FrameworkElement;
+            if (target == null)
+                throw new InvalidOperationException(@"The CallAction extension can only be used on a FrameworkElement.");
+
+            var targetEventAddMethod = targetProvider.TargetProperty as MethodInfo;
+            Delegate returnedDelegate = null;
+            if (targetEventAddMethod != null)
+                returnedDelegate = CreateDelegateForMethodInfo(targetEventAddMethod);
+
+            var targetEventInfo = targetProvider.TargetProperty as EventInfo;
+            if (targetEventInfo != null)
+                returnedDelegate = CreateDelegateForEventInfo(targetEventInfo);
+
+            return returnedDelegate;
+
+            //throw new InvalidOperationException(@"The CallAction extension can only be used on a event/method.");
+            
+
+        }
+
+        private Delegate CreateDelegateForMethodInfo(MethodInfo targetEventAddMethod)
+        {
+            //Retrieve the handler of the event
+            ParameterInfo[] pars = targetEventAddMethod.GetParameters();
+            Type delegateType = pars[1].ParameterType;
+
+            //Retrieves the method info of the proxy handler
+            MethodInfo methodInfo = this.GetType().GetMethod("MyProxyHandler", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Create a delegate to the proxy handler on the markupExtension
+            Delegate returnedDelegate = Delegate.CreateDelegate(delegateType, this, methodInfo);
+            return returnedDelegate;
+        }
+        private Delegate CreateDelegateForEventInfo(EventInfo targetEventInfo)
+        {
+            if (targetEventInfo == null)
+                throw new InvalidOperationException(@"The CallAction extension can only be used on a event.");
+
+            Type delegateType = targetEventInfo.EventHandlerType;
+
+            //Retrieves the method info of the proxy handler
+            MethodInfo methodInfo = this.GetType().GetMethod("MyProxyHandler",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Create a delegate to the proxy handler on the markupExtension
+            Delegate returnedDelegate = Delegate.CreateDelegate(delegateType, this, methodInfo);
+            return returnedDelegate;
+        }
+        void MyProxyHandler(object sender, EventArgs e)
+        {
+            FrameworkElement target = sender as FrameworkElement;
+
+            if (target == null) 
+                return;
+
+            var dataContext = GetDataContext(target.DataContext);
+
+            if (dataContext == null) return;
+
+            //get the method on the datacontext from its name
+            MethodInfo methodInfo = dataContext.GetType()
+                .GetMethod(ActionName, BindingFlags.Public | BindingFlags.Instance);
+
+            methodInfo.Invoke(dataContext, null);
+        }
+        static Type[] GetParameterTypes(EventInfo eventInfo)
+        {
+            var invokeMethod = eventInfo.EventHandlerType.GetMethod("Invoke");
+            return invokeMethod.GetParameters().Select(p => p.ParameterType).ToArray();
+        }
+ 
+        static object GetDataContext(object target)
+        {
+            var depObj = target as DependencyObject;
+            if (depObj == null)
+                return null;
+
+            return depObj.GetValue(FrameworkElement.DataContextProperty)
+                ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
+        }
+ 
     }
 }

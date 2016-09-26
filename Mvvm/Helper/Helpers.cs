@@ -20,7 +20,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interactivity;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -174,7 +176,16 @@ namespace Pollux.Helper
         }
         #endregion
     }
-        
+    public static class CloneHelper
+    {
+        public static List<T> Clone<T>(this List<T> oldList)
+        {
+            var array = new T[oldList.Count];
+            Array.Copy(oldList.ToArray(), array, oldList.Count);
+            return array.ToList();
+
+        }
+    }
     
     public static class XmlHelper
     {
@@ -253,6 +264,29 @@ namespace Pollux.Helper
             T dependencyObject = System.Windows.Markup.XamlReader.Load(fs) as T;
             fs.Close();
             return dependencyObject;
+        }
+        public static DependencyObject FindVisualTreeRoot(this DependencyObject initial)
+        {
+            DependencyObject current = initial;
+            DependencyObject result = initial;
+
+            while (current != null)
+            {
+                result = current;
+                if (current is Visual || current is Visual3D)
+                {
+                    current = VisualTreeHelper.GetParent(current);
+                }
+                else
+                {
+                    // If we're in Logical Land then we must walk 
+                    // up the logical tree until we find a 
+                    // Visual/Visual3D to get us back to Visual Land.
+                    current = LogicalTreeHelper.GetParent(current);
+                }
+            }
+
+            return result;
         }
         public static T FindVisualParent<T>(this DependencyObject obj) where T : DependencyObject
         {
