@@ -13,8 +13,6 @@ namespace IVSAnalysisResultPlayer
     partial class MetroWindowStyle
     {
         bool restoreIfMove = false;
-        private double fullScreenHeight;
-        private double maxScreenHeight;
         private bool bMaxMized = true;
         private void PART_TITLEBAR_MouseMove(object sender, MouseEventArgs e)
         {

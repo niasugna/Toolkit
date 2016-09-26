@@ -37,3 +37,5 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 [assembly: XmlnsDefinition("pollux/behaviors", "Pollux.Behavior")]
+[assembly: XmlnsDefinition("pollux/mvvm", "Pollux.Mvvm")]
+[assembly: XmlnsDefinition("pollux/converter", "Pollux.Converter")]

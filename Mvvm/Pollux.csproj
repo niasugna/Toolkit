@@ -32,7 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <HintPath>..\..\MvvmTest\MvvmApp\packages\Blend.Interctivity.WPF.v4.0.1.0.3\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.JScript" />
     <Reference Include="Newtonsoft.Json">
@@ -77,7 +78,10 @@
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\MvvmTest\MvvmApp\packages\Blend.Interctivity.WPF.v4.0.1.0.3\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -92,10 +96,11 @@
     <Compile Include="Async\AsyncLazy.cs" />
     <Compile Include="Behavior\Behavior.cs" />
     <Compile Include="Behavior\BindVisualStateBehavior.cs" />
+    <Compile Include="Behavior\EventToMethod.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
-    <Compile Include="Converter\BaseConverter.cs" />
+    <Compile Include="Converter\CallMethodConverter.cs" />
     <Compile Include="Converter\CategoryExDictionaryConverter.cs" />
     <Compile Include="Converter\CharacterCasingConverter.cs" />
     <Compile Include="Converter\EnumBooleanConverter.cs" />
@@ -128,6 +133,7 @@
     <Compile Include="Locator\Locator.cs" />
     <Compile Include="Markup\CallMarkup.cs" />
     <Compile Include="Markup\ConverterMarkup.cs" />
+    <Compile Include="Markup\ValueConverterMarkup.cs" />
     <Compile Include="Mvvm\BindableBase.cs" />
     <Compile Include="Mvvm\PropertySupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
