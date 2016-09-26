@@ -97,14 +97,14 @@ namespace Pollux.Helper
             }
             catch (Exception e)
             {
-                log.Info("Failed to retrieve host name using `DNS.GetHostName`.", e);
+                log.Info(e,"Failed to retrieve host name using `DNS.GetHostName`.");
                 try
                 {
                     return Environment.MachineName;
                 }
                 catch (Exception ex)
                 {
-                    log.Info("Failed to retrieve host name using `Environment.MachineName`.", ex);
+                    log.Info(ex,"Failed to retrieve host name using `Environment.MachineName`.");
                     return "(unknown)";
                 }
             }

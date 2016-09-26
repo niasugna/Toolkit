@@ -18,11 +18,11 @@ namespace Pollux.Converter
             return this;
         }
     }
-    public class CallMethodConverter : IValueConverter
+    public class CallConverter : IValueConverter
     {
         public DependencyObject View { get; set; }
         public string MethodName { get; set; }
-        public CallMethodConverter(DependencyObject view, string methodName)
+        public CallConverter(DependencyObject view, string methodName)
         {
             View = view;
             MethodName = methodName;
@@ -50,21 +50,12 @@ namespace Pollux.Converter
         //    var invokeMethod = eventInfo.EventHandlerType.GetMethod("Invoke");
         //    return invokeMethod.GetParameters().Select(p => p.ParameterType).ToArray();
         //}
-        static object GetDataContext(object target)
-        {
-            var depObj = target as DependencyObject;
-            if (depObj == null)
-                return null;
-
-            return depObj.GetValue(FrameworkElement.DataContextProperty)
-                ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
-        }
     }
-    public class CallAsyncMethodConverter : IValueConverter
+    public class AsyncCallConverter : IValueConverter
     {
         public DependencyObject View { get; set; }
         public string MethodName { get; set; }
-        public CallAsyncMethodConverter(DependencyObject view,string methodName)
+        public AsyncCallConverter(DependencyObject view,string methodName)
         {
             View=view;
             MethodName = methodName;
@@ -72,7 +63,7 @@ namespace Pollux.Converter
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var vm = View.GetValue(FrameworkElement.DataContextProperty) ?? View.GetValue(FrameworkContentElement.DataContextProperty);
-            
+
             var dcType = vm.GetType();
 
             var method = dcType.GetMethod(MethodName);
@@ -90,21 +81,6 @@ namespace Pollux.Converter
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-
-        //static Type[] GetParameterTypes(object eventInfo)
-        //{
-        //    var invokeMethod = eventInfo.EventHandlerType.GetMethod("Invoke");
-        //    return invokeMethod.GetParameters().Select(p => p.ParameterType).ToArray();
-        //}
-        static object GetDataContext(object target)
-        {
-            var depObj = target as DependencyObject;
-            if (depObj == null)
-                return null;
-
-            return depObj.GetValue(FrameworkElement.DataContextProperty)
-                ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
         }
     }
 }

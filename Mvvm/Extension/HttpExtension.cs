@@ -8,9 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mvvm.Http
+namespace Pollux.Extension
 {
-    public class HttpHelper
+    public static partial class Extensions
     {
         ///<configuration>
         ///<system.net>
@@ -52,65 +52,26 @@ namespace Mvvm.Http
             }
             return false;
         }
-        public static async Task<string> Get(string uri)
+        public static HttpClient Authorization(this HttpClient httpClient, string user, string password)
         {
             try
             {
-                //var handler = new HttpClientHandler();
-                //handler.Credentials = new System.Net.NetworkCredential("Wendy.Tsai@acti.com", "123456");
-                //var httpClient = new HttpClient(handler);
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync(uri);
-
-                //will throw an exception if not successful
-                response.EnsureSuccessStatusCode();
-
-                string content = await response.Content.ReadAsStringAsync();
-                return content;
-            }
-            catch (HttpRequestException hre)
-            {
-               return hre.ToString();
-            }
-            catch (Exception ex)
-            {
-                // For debugging
-                return  ex.ToString();
-            }
-            
-        }
-        public static async Task<string> Get(string uri,string user,string password)
-        {
-            try
-            {
-                var httpClient = new HttpClient();
                 httpClient.MaxResponseContentBufferSize = 256000;
                 httpClient.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)");
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(String.Format("{0}:{1}", user, password))));
-                var response = await httpClient.GetAsync(uri);
-
-                response.EnsureSuccessStatusCode();
-
-                string content = await response.Content.ReadAsStringAsync();
-                return content;
-            }
-            catch (HttpRequestException hre)
-            {
-                return hre.ToString();
+                return httpClient;
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                throw ex;
             }
 
         }
-        public async Task<string> Post(string uri, string data)
+        public static HttpClient Referrer(this HttpClient httpClient, string referrer)
         {
-
             //http://stackoverflow.com/questions/13903470/using-httpclient-class-with-winrt
             //string URI = "http://www.indianrail.gov.in/cgi_bin/inet_pnrstat_cgi.cgi";
             //string MessageInfo = Uri.EscapeUriString("lccp_pnrno1=8561180604&amp;submitpnr=Get Status");
-            //HttpClient client = new HttpClient();
             //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, URI);
             //request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
             //request.Headers.AcceptCharset.Add(new StringWithQualityHeaderValue("utf-8", 0.7));
@@ -119,15 +80,9 @@ namespace Mvvm.Http
             //request.Content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
             //request.Headers.Host = "www.indianrail.gov.in";
             //request.Headers.UserAgent.Add(new ProductInfoHeaderValue("Mozilla", "5.0"));
-            //request.Headers.Referrer = new Uri("http://www.indianrail.gov.in/pnr_stat.html");
-            //var result = await client.SendAsync(request);
-            //var content = await result.Content.ReadAsStringAsync();  
+            httpClient.DefaultRequestHeaders.Referrer = new Uri(referrer);
 
-            var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync(uri, new StringContent(data));
-            response.EnsureSuccessStatusCode();
-            string content = await response.Content.ReadAsStringAsync();
-            return content;
+            return httpClient;
         }
     }
 }
