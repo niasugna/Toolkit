@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Xaml;
 
-namespace Pollux.Markup
+namespace Pollux.Mvvm
 {
     public class ConverterExtension : MarkupExtension
     {
@@ -45,7 +45,7 @@ namespace Pollux.Markup
             //var isDesignMode = DesignerProperties.GetIsInDesignMode(target);
 
 
-            return new Pollux.Converter.CallConverter(root, _method);
+            return new Pollux.Converter.CallMethodConverter(root, _method);
 
             //return this.Binding.ProvideValue(serviceProvider);
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace Pollux.Markup
+namespace Pollux.Mvvm
 {
     //https://www.thomaslevesque.com/tag/markup-extension/
     //<Button Content="Click me" Click="{my:EventBinding OnClick}" />
@@ -77,14 +77,15 @@ namespace Pollux.Markup
             if (target == null)
                 return;
 
-            var dataContext = GetDataContext(target.DataContext);
+            var dataContext = GetDataContext(target);
 
-            if (dataContext == null) return;
+            if (dataContext == null)
+                throw new Exception(string.Format("DataContext on {0} is null", target));
 
-            //get the method on the datacontext from its name
             MethodInfo methodInfo = dataContext.GetType()
                 .GetMethod(ActionName, BindingFlags.Public | BindingFlags.Instance);
-
+            if (methodInfo == null)
+                throw new Exception(string.Format("Method({1}) is not found on ViewModel({0})", dataContext.GetType(), ActionName));
             methodInfo.Invoke(dataContext, null);
         }
         static Type[] GetParameterTypes(EventInfo eventInfo)
