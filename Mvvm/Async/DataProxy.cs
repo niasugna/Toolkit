@@ -2,19 +2,41 @@
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-//https://msdn.microsoft.com/en-us/magazine/dn605875.aspx
-//Async Programming : Patterns for Asynchronous MVVM Applications: Data Binding
 namespace Mvvm
 {
-    public class NotifyTaskCompletion<TResult> : INotifyPropertyChanged
+    public class NotifyTask<TResult> : INotifyPropertyChanged where TResult : new()
     {
-        public NotifyTaskCompletion(Task<TResult> task)
+        public NotifyTask(Func<TResult> defaultValueFactory,Func<Task<TResult>> taskFactory)
         {
-            Task = task;
-            if (!task.IsCompleted)
+            DefaultValueFactory = defaultValueFactory;
+
+            Result = DefaultValueFactory();
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("Result"));
+
+            TaskFactory = taskFactory;
+            
+            Task = TaskFactory();
+
+            if (!Task.IsCompleted)
             {
-                var _ = WatchTaskAsync(task);
+                var _ = WatchTaskAsync(Task);
             }
+        }
+        public bool Refresh()
+        {
+            if (Task.IsCompleted == false)
+                return false;
+
+            Result = DefaultValueFactory();
+            
+            Task = TaskFactory();
+
+            if (!Task.IsCompleted)
+            {
+                var _ = WatchTaskAsync(Task);
+            }
+            return true;
         }
         private async Task WatchTaskAsync(Task task)
         {
@@ -25,6 +47,9 @@ namespace Mvvm
             catch
             {
             }
+
+
+
             var propertyChanged = PropertyChanged;
             if (propertyChanged == null)
                 return;
@@ -44,19 +69,17 @@ namespace Mvvm
             }
             else
             {
+                if (Task.Status == TaskStatus.RanToCompletion)
+                    Result = Task.Result;
+
                 propertyChanged(this, new PropertyChangedEventArgs("IsSuccessfullyCompleted"));
                 propertyChanged(this, new PropertyChangedEventArgs("Result"));
             }
         }
+        public Func<Task<TResult>> TaskFactory { get; private set; }
+        public Func<TResult> DefaultValueFactory { get; private set; }
         public Task<TResult> Task { get; private set; }
-        public TResult Result
-        {
-            get
-            {
-                return (Task.Status == TaskStatus.RanToCompletion) ?
-                    Task.Result : default(TResult);
-            }
-        }
+        public TResult Result { get; set; }
         public TaskStatus Status { get { return Task.Status; } }
         public bool IsCompleted { get { return Task.IsCompleted; } }
         public bool IsNotCompleted { get { return !Task.IsCompleted; } }
@@ -87,6 +110,9 @@ namespace Mvvm
                     null : InnerException.Message;
             }
         }
+
+        public System.Runtime.CompilerServices.TaskAwaiter<TResult> GetAwaiter() { return Task.GetAwaiter(); }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

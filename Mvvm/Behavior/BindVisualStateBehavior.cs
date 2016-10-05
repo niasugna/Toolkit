@@ -1,9 +1,63 @@
 ﻿using System.Windows;
 using System.Windows.Interactivity;
 using Microsoft.Expression.Interactivity;
+using Microsoft.Expression.Interactivity.Core;
 
 namespace Pollux.Behavior
 {
+    public class VisualState
+    {
+        public static ExtendedVisualStateManager ExtendedVisualStateManager = new ExtendedVisualStateManager();
+        public static bool GetInitialized(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(InitializedProperty);
+        }
+
+        public static void SetInitialized(DependencyObject obj, bool value)
+        {
+            obj.SetValue(InitializedProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for Initialized.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InitializedProperty =
+            DependencyProperty.RegisterAttached("Initialized", typeof(bool), typeof(VisualState), new PropertyMetadata(true));
+
+        public static string GetStateName(DependencyObject obj)
+        {
+            return (string)obj.GetValue(StateNameProperty);
+        }
+
+        public static void SetStateName(DependencyObject obj, string value)
+        {
+            obj.SetValue(StateNameProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for StateName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StateNameProperty =
+            DependencyProperty.RegisterAttached("StateName", typeof(string), typeof(VisualState), new PropertyMetadata(VisualStatePropertyChanged));
+        
+        private static void VisualStatePropertyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var AssociatedObject = obj as FrameworkElement;
+            if (AssociatedObject == null) return;
+
+            VisualStateManager.SetCustomVisualStateManager(AssociatedObject, ExtendedVisualStateManager);
+            
+            var groups = VisualStateManager.GetVisualStateGroups(AssociatedObject);
+
+            foreach(var g in groups)
+            {
+                ExtendedVisualStateManager.SetUseFluidLayout(g as VisualStateGroup, true);
+            }
+
+            FrameworkElement stateTarget;
+            if (!VisualStateUtilities.TryFindNearestStatefulControl(AssociatedObject, out stateTarget)) return;
+
+            bool useTransitions = GetInitialized(obj);
+            VisualStateUtilities.GoToState(stateTarget, (string)args.NewValue, useTransitions);
+            SetInitialized(obj,true);
+        }
+    }
     public class BindVisualStateBehavior : Behavior<FrameworkElement>
     {
         private bool _initialized;
