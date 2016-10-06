@@ -13,8 +13,9 @@ namespace Pollux.ViewModel
         public string VisualState { get; set; }
 
         public bool IsBusy { get; set; }
-        public bool IsFaulted { get; set; }
 
+        public bool IsFaulted { get; set; }
+        public string ErrorMessage { get; set; }
         public Lazy<NotifyTask<bool>> IsLoaded { get; set; }
 
         public virtual async Task<bool> Initialize()
@@ -32,6 +33,9 @@ namespace Pollux.ViewModel
             {
                 IsFaulted = true;
                 OnPropertyChanged(() => IsFaulted);
+                ErrorMessage = e.Message;
+                OnPropertyChanged(() => ErrorMessage);
+                SetVisualState("Exception");
 
                 return false;
             }
