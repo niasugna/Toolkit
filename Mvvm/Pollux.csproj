@@ -48,16 +48,12 @@
       <HintPath>..\packages\OxyPlot.Wpf.1.0.0-unstable1970\lib\net45\OxyPlot.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OxyPlot.Xps, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OxyPlot.Wpf.1.0.0-unstable1970\lib\net45\OxyPlot.Xps.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PdfSharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+      <HintPath>..\..\MvvmTest\MvvmApp\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PdfSharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <HintPath>..\..\MvvmTest\MvvmApp\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -92,10 +88,12 @@
     <Compile Include="Behavior\Behavior.cs" />
     <Compile Include="Behavior\BindVisualStateBehavior.cs" />
     <Compile Include="Behavior\EventToMethod.cs" />
+    <Compile Include="Behavior\LoadingIndicatorEx.cs" />
     <Compile Include="Behavior\VisualStateUtilities.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
+    <Compile Include="Controls\LoadingIndicator.cs" />
     <Compile Include="Converter\CallMethodConverter.cs" />
     <Compile Include="Converter\CategoryExDictionaryConverter.cs" />
     <Compile Include="Converter\CharacterCasingConverter.cs" />
@@ -148,7 +146,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\LoadingArcs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\MetroWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

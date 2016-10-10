@@ -65,13 +65,15 @@ namespace Pollux.Behavior
             var element = sender as ContentControl;
 
             var grid = new Grid();
-            var border = new Border() {IsHitTestVisible = false ,Background= new SolidColorBrush(Color.FromArgb(200,255,255,255))};
-
-            grid.Children.Add(border);
+            var border = new Border() {IsHitTestVisible = false,IsEnabled= false, Background= new SolidColorBrush(Color.FromArgb(200,255,255,255))};
+            border.SetValue(Panel.ZIndexProperty, 98);
+            
             grid.Children.Add(_loadingIndicator);
             var content = element.Content as FrameworkElement;
             element.Content = null;
+            //border.Child = content;
             grid.Children.Add(content);
+            grid.Children.Add(border);
             element.Content = grid;
 
         }
