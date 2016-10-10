@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:LoadingIndicators.WPF">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/LoadingArcs.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush x:Key="AccentColorBrush" Color="#CC119EDA"/>
+    <Style TargetType="{x:Type controls:LoadingIndicator}" BasedOn="{StaticResource LoadingIndicatorArcsStyleKey}">
+        <Setter Property="IsActive" Value="{Binding IsBusy}"/>
+        <Setter Property="Panel.ZIndex" Value="99"/>
+        <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+</ResourceDictionary>

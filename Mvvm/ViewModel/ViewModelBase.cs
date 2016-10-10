@@ -67,6 +67,13 @@ namespace Pollux.ViewModel
             VisualState = state;
             OnPropertyChanged(() => VisualState);
         }
+        public bool IsInDesignMode
+        {
+            get
+            {
+                return System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject());
+            }
+        }
         public object CreateView(object viewModel)
         {
             var modelType = viewModel.GetType();

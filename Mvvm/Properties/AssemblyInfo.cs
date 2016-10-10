@@ -39,3 +39,4 @@ using System.Windows.Markup;
 [assembly: XmlnsDefinition("pollux/behaviors", "Pollux.Behavior")]
 [assembly: XmlnsDefinition("pollux/behaviors", "Pollux.Mvvm")]
 [assembly: XmlnsDefinition("pollux/behaviors", "Pollux.Converter")]
+[assembly: XmlnsDefinition("pollux/behaviors", "LoadingIndicators.WPF")]
