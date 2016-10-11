@@ -86,6 +86,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animations\GridLengthAnimation.cs" />
     <Compile Include="Async\DataProxy.cs" />
     <Compile Include="Async\NotifyTaskCompletion.cs" />
     <Compile Include="Async\AsyncLazy.cs" />
