@@ -65,6 +65,7 @@ namespace Pollux.ViewModel
             VisualStateLogic(state);
 
             VisualState = state;
+            System.Diagnostics.Trace.WriteLine("SetVisualState = " +state);
             OnPropertyChanged(() => VisualState);
         }
         public bool IsInDesignMode
