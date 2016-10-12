@@ -12,10 +12,9 @@ namespace Pollux.Behavior
 {
     public class LoadingIndicatorEx
     {
-        static LoadingIndicator _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
-
         public static bool GetBinding(DependencyObject obj)
         {
+            System.Diagnostics.Debugger.Break();
             return (bool)obj.GetValue(BindingProperty);
         }
 
@@ -29,7 +28,9 @@ namespace Pollux.Behavior
             DependencyProperty.RegisterAttached("Binding", typeof(bool), typeof(LoadingIndicatorEx), new PropertyMetadata(false,
                 (o,e)=>
                 {
-                    _loadingIndicator.IsActive = (bool)e.NewValue;
+                    //GetBinding(o);
+
+                    //_loadingIndicator.IsActive = (bool)e.NewValue;
                 }));
 
 
@@ -67,11 +68,13 @@ namespace Pollux.Behavior
             var grid = new Grid();
             var border = new Border() {IsHitTestVisible = false,IsEnabled= false, Background= new SolidColorBrush(Color.FromArgb(200,255,255,255))};
             border.SetValue(Panel.ZIndexProperty, 98);
-            
+
+            var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
             grid.Children.Add(_loadingIndicator);
             var content = element.Content as FrameworkElement;
             element.Content = null;
-            //border.Child = content;
+            var binding = (sender as FrameworkElement).GetBindingExpression(LoadingIndicatorEx.BindingProperty);
+            _loadingIndicator.SetBinding(LoadingIndicator.IsActiveProperty, binding.ParentBinding);
             grid.Children.Add(content);
             grid.Children.Add(border);
             element.Content = grid;
