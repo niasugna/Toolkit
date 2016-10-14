@@ -9,34 +9,38 @@ namespace Mvvm
         public NotifyTask(Func<TResult> defaultValueFactory,Func<Task<TResult>> taskFactory)
         {
             DefaultValueFactory = defaultValueFactory;
-
-            Result = DefaultValueFactory();
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs("Result"));
-
-            TaskFactory = taskFactory;
+            
+            TaskFactory = taskFactory;            
             
             Task = TaskFactory();
 
-            if (!Task.IsCompleted)
-            {
-                var _ = WatchTaskAsync(Task);
-            }
+            SetResultToDefault();
         }
         public bool Refresh()
         {
             if (Task.IsCompleted == false)
+            {
                 return false;
-
-            Result = DefaultValueFactory();
-            
-            Task = TaskFactory();
+            }
+            if (Task.IsCompleted == true)
+            {
+                SetResultToDefault();
+                Task = TaskFactory();
+            }
 
             if (!Task.IsCompleted)
             {
                 var _ = WatchTaskAsync(Task);
             }
             return true;
+        }
+
+        private void SetResultToDefault()
+        {
+            Result = DefaultValueFactory();
+
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs("Result"));
         }
         private async Task WatchTaskAsync(Task task)
         {

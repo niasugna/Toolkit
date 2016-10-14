@@ -34,7 +34,7 @@ namespace Pollux.Behavior
                     var vm = (s as FrameworkElement).DataContext as BusyViewModelBase;
                     if (vm !=null)
                     {
-                        vm.IsLoaded.Value.Refresh();
+                        vm.Load();
                     }
                 }));
 

@@ -2,6 +2,7 @@
 using Pollux.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,31 +11,71 @@ namespace Pollux.ViewModel
 {
     public abstract class BusyViewModelBase : BindableBase
     {
-        public string VisualState { get; set; }
+        private string _VisualState;
+        public string VisualState
+        {
+            get { return _VisualState; }
+            set
+            {
+                _VisualState = value;
+                OnPropertyChanged<string>(() => this.VisualState);
+            }
+        }
+        
 
-        public bool IsBusy { get; set; }
+        public bool IsBusy { get; private set; }
+
+        public bool IsLoaded { get; private set; }
 
         public bool IsFaulted { get; set; }
-        public string ErrorMessage { get; set; }
-        public Lazy<NotifyTask<bool>> IsLoaded { get; set; }
 
-        public virtual async Task<bool> Initialize()
+        public NotifyTask<bool> RemoteDataLoader { get; set; }
+        
+        public string ErrorMessage { get; set; }
+
+        public void Load()
+        {
+            if (RemoteDataLoader == null)
+            {
+                RemoteDataLoader = new NotifyTask<bool>(() => false, () => LoadAsync());
+            }
+            else
+            {
+                IsLoaded = RemoteDataLoader.Refresh();
+                OnPropertyChanged(() => IsLoaded);
+            }
+        }
+        public virtual async Task<bool> LoadAsync()
         {
             try
             {
                 IsBusy = true;
                 OnPropertyChanged(() => IsBusy);
 
-                await Refresh();
+                await RefreshAsync();
 
                 return true;
             }
             catch (Exception e)
             {
+                var query = new StackTrace(e, true).GetFrames()         // get the frames
+                              .Select(frame => new
+                              {                   
+                                  // get the info
+                                  FileName = frame.GetFileName(),
+                                  LineNumber = frame.GetFileLineNumber(),
+                                  ColumnNumber = frame.GetFileColumnNumber(),
+                                  Method = frame.GetMethod(),
+                                  Class = frame.GetMethod().DeclaringType,
+                              });
+                Trace.WriteLine("Exception  : " + query.First().Class);
+
                 IsFaulted = true;
                 OnPropertyChanged(() => IsFaulted);
+
                 ErrorMessage = e.Message;
                 OnPropertyChanged(() => ErrorMessage);
+
                 SetVisualState("Exception");
 
                 return false;
@@ -43,11 +84,9 @@ namespace Pollux.ViewModel
             {
                 IsBusy = false;
                 OnPropertyChanged(() => IsBusy);
-
-
             }
         }
-        public virtual async Task Refresh()
+        public virtual async Task RefreshAsync()
         {
             await Task.Delay(0);
             return;
@@ -55,16 +94,18 @@ namespace Pollux.ViewModel
 
         public BusyViewModelBase()
         {
-            IsLoaded = new Lazy<NotifyTask<bool>>(() => new NotifyTask<bool>(() => false, () => Initialize()));
+            
         }
-        public virtual void VisualStateLogic(string state)
+
+        public virtual void HandleVisualState(string state)
         {
         }
         public void SetVisualState(string state)
         {
-            VisualStateLogic(state);
+            HandleVisualState(state);
 
             VisualState = state;
+
             System.Diagnostics.Trace.WriteLine("SetVisualState = " +state);
             OnPropertyChanged(() => VisualState);
         }

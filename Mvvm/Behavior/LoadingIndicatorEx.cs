@@ -66,7 +66,8 @@ namespace Pollux.Behavior
             var element = sender as ContentControl;
 
             var grid = new Grid();
-            var border = new Border() {IsHitTestVisible = false,IsEnabled= false, Background= new SolidColorBrush(Color.FromArgb(200,255,255,255))};
+            var border = new Border() {IsHitTestVisible = false,IsEnabled= false, 
+            };
             border.SetValue(Panel.ZIndexProperty, 98);
 
             var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
