@@ -295,6 +295,28 @@ namespace Pollux.Helper
 
             return (T)obj;
         }
+        public static DependencyObject FindAncestor(DependencyObject dependencyObject, Func<DependencyObject, bool> predicate)
+        {
+            if (predicate == null)
+            {
+                throw new ArgumentNullException("predicate");
+            }
+
+            if (predicate(dependencyObject))
+            {
+                return dependencyObject;
+            }
+
+            DependencyObject parent = null;
+            parent = LogicalTreeHelper.GetParent(dependencyObject);
+
+            if (parent != null)
+            {
+                return FindAncestor(parent, predicate);
+            }
+
+            return null;
+        }
         public static T FindVisualChild<T>(this DependencyObject obj) where T : DependencyObject
         {
             for (int i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(obj); i++)
