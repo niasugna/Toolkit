@@ -11,6 +11,8 @@ namespace Pollux.ViewModel
 {
     public abstract class BusyViewModelBase : BindableBase
     {
+        public event EventHandler Closed;
+
         private string _VisualState;
         public string VisualState
         {
@@ -33,6 +35,9 @@ namespace Pollux.ViewModel
         
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// start a new task to load remote data or rerun if this task is created
+        /// </summary>
         public void Load()
         {
             if (RemoteDataLoader == null)
@@ -45,7 +50,11 @@ namespace Pollux.ViewModel
                 OnPropertyChanged(() => IsLoaded);
             }
         }
-        public virtual async Task<bool> LoadAsync()
+        /// <summary>
+        /// loading remote data and refresh "IsBusy" status
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> LoadAsync()
         {
             try
             {
@@ -86,6 +95,10 @@ namespace Pollux.ViewModel
                 OnPropertyChanged(() => IsBusy);
             }
         }
+        /// <summary>
+        /// override this function to load remote data
+        /// </summary>
+        /// <returns></returns>
         public virtual async Task RefreshAsync()
         {
             await Task.Delay(0);
@@ -96,7 +109,11 @@ namespace Pollux.ViewModel
         {
             
         }
-
+        public virtual void CloseView()
+        {
+            if (Closed != null)
+                Closed(this, null);
+        }
         public virtual void HandleVisualState(string state)
         {
         }

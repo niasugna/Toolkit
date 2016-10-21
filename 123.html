@@ -1,0 +1,1108 @@
+﻿<!DOCTYPE html>
+<style type="text/css">
+.main {
+    height: 600px;
+    /*width: 778px !important;*/
+    overflow: hidden;
+    padding : 5px;
+    margin-bottom: 10px;
+    border: 2px solid #e3e3e3;
+    
+    border-radius: 0px;
+    /*support Safari & Chrome*/
+    -webkit-border-radius: 4px;
+    /*support FireFox*/
+    -moz-border-radius: 4px;
+
+     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);       
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+     
+}
+.counting-template
+{
+    height: 600px;
+	width:100%;
+    /*width: 778px !important;*/
+    overflow: hidden;
+    padding : 5px;
+	margin-left:0;
+    margin-bottom: 10px;
+    border: 2px solid #e3e3e3;
+    padding-left:0;
+	border-left-width:0
+		
+    border-radius: 0px;
+    /*support Safari & Chrome*/
+    -webkit-border-radius: 4px;
+    /*support FireFox*/
+    -moz-border-radius: 4px;
+
+     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);       
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	
+}
+.overlap {position:relative;left:0;top:-480px;width:350px;height:480px;}
+
+.panel.with-nav-tabs .panel-heading{padding: 5px 5px 0 5px;}
+.panel.with-nav-tabs .nav-tabs{border-bottom: none;}
+.panel.with-nav-tabs .nav-justified{margin-bottom: -1px;}
+/********************************************************************/
+/*** PANEL DEFAULT ***/
+.with-nav-tabs.panel-default .nav-tabs > li > a,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {color: #777;}
+.with-nav-tabs.panel-default .nav-tabs > .open > a,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-default .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li > a:focus {color: #777;background-color: #ddd;border-color: transparent;}
+.with-nav-tabs.panel-default .nav-tabs > li.active > a,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li.active > a:focus {color: #555;background-color: #fff;border-color: #ddd;border-bottom-color: transparent;}
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu {background-color: #f5f5f5;border-color: #ddd;}
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a {color: #777;}
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {background-color: #ddd;}
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-default .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {color: #fff;background-color: #555;}
+</style>
+<html lang="en">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Report">
+    <meta name="author" content="RS2">    
+    <title>Report</title>
+<head>
+</head>
+<h1 align="center"> </h1>
+<h1 align="center" >DAILY REPORT - [R11111111111] 2016-10-01 </h1>
+
+<h2 align="center"> </h1>
+<h2 align="center"> </h1>
+<body>
+    <div id="graphic">
+		
+			<div id="67ad1001-2321-4612-977e-e7168d1b6773" class="counting-template"></div>
+		
+			<div id="3a9fdf23-1802-4cb9-8aeb-b507cef86b75" class="counting-template"></div>
+		
+			<div id="07388f05-c3d8-46b3-929f-0136248a05e9" class="counting-template"></div>
+		
+			<div id="ad32bd8b-7925-4048-a7fc-51e23dab0248" class="counting-template"></div>
+		
+			<div id="92a203f4-6225-48e9-9206-83aba483d926" class="counting-template"></div>
+		
+    </div>   
+    <div class="col-md-6">
+        <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul id="myTabs" class="nav nav-tabs">
+	    
+			</ul>
+		<div>
+                <div class="panel-body">
+                    <div class="tab-content">
+
+	    
+        </div>
+    </div>
+
+    <footer id="footer"></footer>
+    <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.2/echarts.min.js"></script>
+<!--    <script src="js/jquery.min.js"></script>-->
+<!--    <script src="js/echarts.min.js"></script>-->
+<script>
+$('#myTabs a:first').tab('show');
+String.prototype.padZero= function(len, c){var s= '', c= c || '0', len= (len || 2)-this.length;while(s.length<len) s+= c;return s+this;}
+Number.prototype.padZero= function(len, c){return String(this).padZero(len,c);}
+	var hourLabel = [];
+	for(i=0;i<24;i++)
+	hourLabel.push(i.padZero(2)+":00");
+</script>
+	
+		<script type="text/javascript" charset="UTF-8">
+
+
+
+	
+        //直方圖
+        var option = {
+            title: [
+			//主標題
+                {
+                    textAlign: 'center',
+                    text: 'CHART511111 ',
+                    textStyle: {fontSize: 20,fontWeight: 'bold'},
+                    subtext: '',
+                    x: '50%',y:'2%'
+                },
+				//副標題(BAR)
+                {
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'TREND',
+					subtext: 'Hour',
+					x: '65%',
+					y:'10%'
+				},
+				//副標題(PIE)
+				{
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'DISTRIBUTION',
+					subtext: '["LOCATION","FLOOR","CATEGORY"]',
+					x: '15%',
+					y:'10%'
+				}],
+				tooltip: {
+                trigger: 'axis',
+                axisPointer: {type: 'shadow'}
+            },
+            legend: {
+                top: '10%',
+                right:'3%',
+                data: [	'內湖館1F床墊',	'內湖館2F傢俱',	'內湖館3F燈飾',	'平均']
+            },
+            toolbox: {
+                show: true,
+                itemGap:20,
+                orient: 'vertical',
+                y: 'center',
+                feature: {
+                    mark: { show: false },
+                    magicType: {
+                        show: true, type: ['line', 'bar', 'stack', 'tiled'],
+                        title: { line: 'Line', bar: 'Column', stack: 'Stack', tiled: 'Tiled' }
+                    },
+                    restore: { show: true,title:'Restore' },
+                    saveAsImage: { type:'png',show: true,title:'Save' }
+                }
+            },
+            //calculable: true,
+            xAxis: [
+                {
+                    gridIndex:1,
+                    type: 'category',
+                    boundaryGap: true,
+                    data: hourLabel
+                }
+            ],
+            yAxis: [
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '人數',
+                    splitArea: { show: true }
+                },
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '平均',
+                    scale: true,
+                }
+            ],
+            grid: [
+                {
+                    left: '0%',
+                    top:'20%',
+                    right:'30%',
+                    containLabel: true
+                },
+               {
+                   left: '30%',
+                   top: '20%',
+                   right:'3%',
+                   containLabel: true
+               }],
+            dataZoom: [
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                filterMode: 'empty'
+            },
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                type: 'inside'
+            }],
+            series: [
+			{
+				name: '內湖館1F床墊',
+				type: 'bar',
+				data: [15,63,279,189,140,153,218,88,214,300,207,47,102,3,0,0,0,2,5,0,0,0,0,0]
+			},
+			{
+				name: '內湖館2F傢俱',
+				type: 'bar',
+				data: [10,63,272,202,101,138,178,136,250,214,210,40,86,4,0,0,0,4,21,0,0,0,0,0]
+			},
+			{
+				name: '內湖館3F燈飾',
+				type: 'bar',
+				data: [30,52,305,203,144,146,202,100,247,261,218,52,82,2,0,0,0,2,10,0,0,0,0,0]
+			},
+			
+            {
+                    yAxisIndex: 1,
+                    name: '平均',
+                    type: 'line',
+                    data: [11.1, 222, 33, 11, 3, 10, 10]
+            },
+                 {
+                     name: '分布',
+                     type: 'pie',
+                     tooltip: {trigger: 'item',formatter: '{a} <br/>{b} : {c} ({d}%)'},
+                     center: ['15%', '50%'],
+                     radius: ['30%', '50%'],
+                     itemStyle: {
+                         normal: {
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {show: true,position: 'center'},
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false,
+                                     //length: 10
+                                 }
+                             }
+                         }
+                     },
+                     data: [
+
+                         { value: 2025, name: '內湖館1F床墊' },
+
+                         { value: 1929, name: '內湖館2F傢俱' },
+
+                         { value: 2056, name: '內湖館3F燈飾' },
+
+                     ]
+                 }
+            ]
+        };
+		
+        var chart = echarts.init(document.getElementById('67ad1001-2321-4612-977e-e7168d1b6773'));
+		chart.setOption(option);
+chart.on('legendselectchanged', function (params) {
+    var isSelected = params.selected[params.name];
+	var ecModel = chart.getModel();
+	var option = ecModel.getOption();
+	ecModel.eachSeries(function (seriesModel) {
+                var data = seriesModel.getData();
+				var name = data.getName(21);
+                
+            }, option.series);
+	var legendModels = ecModel.findComponents({mainType: 'legend'});
+
+	for (var i = 0; i < legendModels.length; i++) {
+		var legend = legendModels[i];	
+		
+                    if (legend.isSelected("")) {
+					var legendData = legend.getData();	
+		console.log(legendData);				
+                    }
+                }
+    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+    console.log(params.selected);
+});
+     window.onresize = chart.resize;
+   
+
+       
+    </script>
+	
+		<script type="text/javascript" charset="UTF-8">
+
+
+
+	
+        //直方圖
+        var option = {
+            title: [
+			//主標題
+                {
+                    textAlign: 'center',
+                    text: '內湖館人流分布945 ',
+                    textStyle: {fontSize: 20,fontWeight: 'bold'},
+                    subtext: '',
+                    x: '50%',y:'2%'
+                },
+				//副標題(BAR)
+                {
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'TREND',
+					subtext: 'Hour',
+					x: '65%',
+					y:'10%'
+				},
+				//副標題(PIE)
+				{
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'DISTRIBUTION',
+					subtext: '[]',
+					x: '15%',
+					y:'10%'
+				}],
+				tooltip: {
+                trigger: 'axis',
+                axisPointer: {type: 'shadow'}
+            },
+            legend: {
+                top: '10%',
+                right:'3%',
+                data: [	'',	'平均']
+            },
+            toolbox: {
+                show: true,
+                itemGap:20,
+                orient: 'vertical',
+                y: 'center',
+                feature: {
+                    mark: { show: false },
+                    magicType: {
+                        show: true, type: ['line', 'bar', 'stack', 'tiled'],
+                        title: { line: 'Line', bar: 'Column', stack: 'Stack', tiled: 'Tiled' }
+                    },
+                    restore: { show: true,title:'Restore' },
+                    saveAsImage: { type:'png',show: true,title:'Save' }
+                }
+            },
+            //calculable: true,
+            xAxis: [
+                {
+                    gridIndex:1,
+                    type: 'category',
+                    boundaryGap: true,
+                    data: hourLabel
+                }
+            ],
+            yAxis: [
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '人數',
+                    splitArea: { show: true }
+                },
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '平均',
+                    scale: true,
+                }
+            ],
+            grid: [
+                {
+                    left: '0%',
+                    top:'20%',
+                    right:'30%',
+                    containLabel: true
+                },
+               {
+                   left: '30%',
+                   top: '20%',
+                   right:'3%',
+                   containLabel: true
+               }],
+            dataZoom: [
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                filterMode: 'empty'
+            },
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                type: 'inside'
+            }],
+            series: [
+			{
+				name: '',
+				type: 'bar',
+				data: [35,107,471,331,219,232,317,170,428,440,357,80,151,5,0,0,0,4,16,0,0,0,0,0]
+			},
+			
+            {
+                    yAxisIndex: 1,
+                    name: '平均',
+                    type: 'line',
+                    data: [11.1, 222, 33, 11, 3, 10, 10]
+            },
+                 {
+                     name: '分布',
+                     type: 'pie',
+                     tooltip: {trigger: 'item',formatter: '{a} <br/>{b} : {c} ({d}%)'},
+                     center: ['15%', '50%'],
+                     radius: ['30%', '50%'],
+                     itemStyle: {
+                         normal: {
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {show: true,position: 'center'},
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false,
+                                     //length: 10
+                                 }
+                             }
+                         }
+                     },
+                     data: [
+
+                         { value: 3363, name: '' },
+
+                     ]
+                 }
+            ]
+        };
+		
+        var chart = echarts.init(document.getElementById('3a9fdf23-1802-4cb9-8aeb-b507cef86b75'));
+		chart.setOption(option);
+chart.on('legendselectchanged', function (params) {
+    var isSelected = params.selected[params.name];
+	var ecModel = chart.getModel();
+	var option = ecModel.getOption();
+	ecModel.eachSeries(function (seriesModel) {
+                var data = seriesModel.getData();
+				var name = data.getName(21);
+                
+            }, option.series);
+	var legendModels = ecModel.findComponents({mainType: 'legend'});
+
+	for (var i = 0; i < legendModels.length; i++) {
+		var legend = legendModels[i];	
+		
+                    if (legend.isSelected("")) {
+					var legendData = legend.getData();	
+		console.log(legendData);				
+                    }
+                }
+    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+    console.log(params.selected);
+});
+     window.onresize = chart.resize;
+   
+
+       
+    </script>
+	
+		<script type="text/javascript" charset="UTF-8">
+
+
+
+	
+        //直方圖
+        var option = {
+            title: [
+			//主標題
+                {
+                    textAlign: 'center',
+                    text: '內湖館人流分布16 ',
+                    textStyle: {fontSize: 20,fontWeight: 'bold'},
+                    subtext: '',
+                    x: '50%',y:'2%'
+                },
+				//副標題(BAR)
+                {
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'TREND',
+					subtext: 'Hour',
+					x: '65%',
+					y:'10%'
+				},
+				//副標題(PIE)
+				{
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'DISTRIBUTION',
+					subtext: '[]',
+					x: '15%',
+					y:'10%'
+				}],
+				tooltip: {
+                trigger: 'axis',
+                axisPointer: {type: 'shadow'}
+            },
+            legend: {
+                top: '10%',
+                right:'3%',
+                data: [	'',	'平均']
+            },
+            toolbox: {
+                show: true,
+                itemGap:20,
+                orient: 'vertical',
+                y: 'center',
+                feature: {
+                    mark: { show: false },
+                    magicType: {
+                        show: true, type: ['line', 'bar', 'stack', 'tiled'],
+                        title: { line: 'Line', bar: 'Column', stack: 'Stack', tiled: 'Tiled' }
+                    },
+                    restore: { show: true,title:'Restore' },
+                    saveAsImage: { type:'png',show: true,title:'Save' }
+                }
+            },
+            //calculable: true,
+            xAxis: [
+                {
+                    gridIndex:1,
+                    type: 'category',
+                    boundaryGap: true,
+                    data: hourLabel
+                }
+            ],
+            yAxis: [
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '人數',
+                    splitArea: { show: true }
+                },
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '平均',
+                    scale: true,
+                }
+            ],
+            grid: [
+                {
+                    left: '0%',
+                    top:'20%',
+                    right:'30%',
+                    containLabel: true
+                },
+               {
+                   left: '30%',
+                   top: '20%',
+                   right:'3%',
+                   containLabel: true
+               }],
+            dataZoom: [
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                filterMode: 'empty'
+            },
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                type: 'inside'
+            }],
+            series: [
+			{
+				name: '',
+				type: 'bar',
+				data: [35,107,471,331,219,232,317,170,428,440,357,80,151,5,0,0,0,4,16,0,0,0,0,0]
+			},
+			
+            {
+                    yAxisIndex: 1,
+                    name: '平均',
+                    type: 'line',
+                    data: [11.1, 222, 33, 11, 3, 10, 10]
+            },
+                 {
+                     name: '分布',
+                     type: 'pie',
+                     tooltip: {trigger: 'item',formatter: '{a} <br/>{b} : {c} ({d}%)'},
+                     center: ['15%', '50%'],
+                     radius: ['30%', '50%'],
+                     itemStyle: {
+                         normal: {
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {show: true,position: 'center'},
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false,
+                                     //length: 10
+                                 }
+                             }
+                         }
+                     },
+                     data: [
+
+                         { value: 3363, name: '' },
+
+                     ]
+                 }
+            ]
+        };
+		
+        var chart = echarts.init(document.getElementById('07388f05-c3d8-46b3-929f-0136248a05e9'));
+		chart.setOption(option);
+chart.on('legendselectchanged', function (params) {
+    var isSelected = params.selected[params.name];
+	var ecModel = chart.getModel();
+	var option = ecModel.getOption();
+	ecModel.eachSeries(function (seriesModel) {
+                var data = seriesModel.getData();
+				var name = data.getName(21);
+                
+            }, option.series);
+	var legendModels = ecModel.findComponents({mainType: 'legend'});
+
+	for (var i = 0; i < legendModels.length; i++) {
+		var legend = legendModels[i];	
+		
+                    if (legend.isSelected("")) {
+					var legendData = legend.getData();	
+		console.log(legendData);				
+                    }
+                }
+    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+    console.log(params.selected);
+});
+     window.onresize = chart.resize;
+   
+
+       
+    </script>
+	
+		<script type="text/javascript" charset="UTF-8">
+
+
+
+	
+        //直方圖
+        var option = {
+            title: [
+			//主標題
+                {
+                    textAlign: 'center',
+                    text: '內湖館人流分布960 ',
+                    textStyle: {fontSize: 20,fontWeight: 'bold'},
+                    subtext: '',
+                    x: '50%',y:'2%'
+                },
+				//副標題(BAR)
+                {
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'TREND',
+					subtext: 'Hour',
+					x: '65%',
+					y:'10%'
+				},
+				//副標題(PIE)
+				{
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'DISTRIBUTION',
+					subtext: '[]',
+					x: '15%',
+					y:'10%'
+				}],
+				tooltip: {
+                trigger: 'axis',
+                axisPointer: {type: 'shadow'}
+            },
+            legend: {
+                top: '10%',
+                right:'3%',
+                data: [	'',	'平均']
+            },
+            toolbox: {
+                show: true,
+                itemGap:20,
+                orient: 'vertical',
+                y: 'center',
+                feature: {
+                    mark: { show: false },
+                    magicType: {
+                        show: true, type: ['line', 'bar', 'stack', 'tiled'],
+                        title: { line: 'Line', bar: 'Column', stack: 'Stack', tiled: 'Tiled' }
+                    },
+                    restore: { show: true,title:'Restore' },
+                    saveAsImage: { type:'png',show: true,title:'Save' }
+                }
+            },
+            //calculable: true,
+            xAxis: [
+                {
+                    gridIndex:1,
+                    type: 'category',
+                    boundaryGap: true,
+                    data: hourLabel
+                }
+            ],
+            yAxis: [
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '人數',
+                    splitArea: { show: true }
+                },
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '平均',
+                    scale: true,
+                }
+            ],
+            grid: [
+                {
+                    left: '0%',
+                    top:'20%',
+                    right:'30%',
+                    containLabel: true
+                },
+               {
+                   left: '30%',
+                   top: '20%',
+                   right:'3%',
+                   containLabel: true
+               }],
+            dataZoom: [
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                filterMode: 'empty'
+            },
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                type: 'inside'
+            }],
+            series: [
+			{
+				name: '',
+				type: 'bar',
+				data: [35,107,471,331,219,232,317,170,428,440,357,80,151,5,0,0,0,4,16,0,0,0,0,0]
+			},
+			
+            {
+                    yAxisIndex: 1,
+                    name: '平均',
+                    type: 'line',
+                    data: [11.1, 222, 33, 11, 3, 10, 10]
+            },
+                 {
+                     name: '分布',
+                     type: 'pie',
+                     tooltip: {trigger: 'item',formatter: '{a} <br/>{b} : {c} ({d}%)'},
+                     center: ['15%', '50%'],
+                     radius: ['30%', '50%'],
+                     itemStyle: {
+                         normal: {
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {show: true,position: 'center'},
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false,
+                                     //length: 10
+                                 }
+                             }
+                         }
+                     },
+                     data: [
+
+                         { value: 3363, name: '' },
+
+                     ]
+                 }
+            ]
+        };
+		
+        var chart = echarts.init(document.getElementById('ad32bd8b-7925-4048-a7fc-51e23dab0248'));
+		chart.setOption(option);
+chart.on('legendselectchanged', function (params) {
+    var isSelected = params.selected[params.name];
+	var ecModel = chart.getModel();
+	var option = ecModel.getOption();
+	ecModel.eachSeries(function (seriesModel) {
+                var data = seriesModel.getData();
+				var name = data.getName(21);
+                
+            }, option.series);
+	var legendModels = ecModel.findComponents({mainType: 'legend'});
+
+	for (var i = 0; i < legendModels.length; i++) {
+		var legend = legendModels[i];	
+		
+                    if (legend.isSelected("")) {
+					var legendData = legend.getData();	
+		console.log(legendData);				
+                    }
+                }
+    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+    console.log(params.selected);
+});
+     window.onresize = chart.resize;
+   
+
+       
+    </script>
+	
+		<script type="text/javascript" charset="UTF-8">
+
+
+
+	
+        //直方圖
+        var option = {
+            title: [
+			//主標題
+                {
+                    textAlign: 'center',
+                    text: 'C522222222 ',
+                    textStyle: {fontSize: 20,fontWeight: 'bold'},
+                    subtext: '',
+                    x: '50%',y:'2%'
+                },
+				//副標題(BAR)
+                {
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'TREND',
+					subtext: 'Hour',
+					x: '65%',
+					y:'10%'
+				},
+				//副標題(PIE)
+				{
+					textAlign: 'center',
+					textStyle: {
+						fontSize: 12,
+						fontWeight: 'normal'
+					},
+					text: 'DISTRIBUTION',
+					subtext: '[]',
+					x: '15%',
+					y:'10%'
+				}],
+				tooltip: {
+                trigger: 'axis',
+                axisPointer: {type: 'shadow'}
+            },
+            legend: {
+                top: '10%',
+                right:'3%',
+                data: [	'',	'平均']
+            },
+            toolbox: {
+                show: true,
+                itemGap:20,
+                orient: 'vertical',
+                y: 'center',
+                feature: {
+                    mark: { show: false },
+                    magicType: {
+                        show: true, type: ['line', 'bar', 'stack', 'tiled'],
+                        title: { line: 'Line', bar: 'Column', stack: 'Stack', tiled: 'Tiled' }
+                    },
+                    restore: { show: true,title:'Restore' },
+                    saveAsImage: { type:'png',show: true,title:'Save' }
+                }
+            },
+            //calculable: true,
+            xAxis: [
+                {
+                    gridIndex:1,
+                    type: 'category',
+                    boundaryGap: true,
+                    data: hourLabel
+                }
+            ],
+            yAxis: [
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '人數',
+                    splitArea: { show: true }
+                },
+                {
+                    gridIndex: 1,
+                    type: 'value',
+                    name: '平均',
+                    scale: true,
+                }
+            ],
+            grid: [
+                {
+                    left: '0%',
+                    top:'20%',
+                    right:'30%',
+                    containLabel: true
+                },
+               {
+                   left: '30%',
+                   top: '20%',
+                   right:'3%',
+                   containLabel: true
+               }],
+            dataZoom: [
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                filterMode: 'empty'
+            },
+            {
+                xAxisIndex: 0, start: 0, end: 100,
+                show: true,
+                showDataShadow: false,
+                type: 'inside'
+            }],
+            series: [
+			{
+				name: '',
+				type: 'bar',
+				data: [4,28,79,75,31,38,54,54,73,63,85,14,31,1,0,0,0,1,6,0,0,0,0,0]
+			},
+			
+            {
+                    yAxisIndex: 1,
+                    name: '平均',
+                    type: 'line',
+                    data: [11.1, 222, 33, 11, 3, 10, 10]
+            },
+                 {
+                     name: '分布',
+                     type: 'pie',
+                     tooltip: {trigger: 'item',formatter: '{a} <br/>{b} : {c} ({d}%)'},
+                     center: ['15%', '50%'],
+                     radius: ['30%', '50%'],
+                     itemStyle: {
+                         normal: {
+                             avoidLabelOverlap: false,
+                             label: {
+                                 normal: {show: true,position: 'center'},
+                                 emphasis: {
+                                     show: true,
+                                     textStyle: {
+                                         fontSize: '30',
+                                         fontWeight: 'bold'
+                                     }
+                                 }
+                             },
+                             labelLine: {
+                                 normal: {
+                                     show: false,
+                                     //length: 10
+                                 }
+                             }
+                         }
+                     },
+                     data: [
+
+                         { value: 637, name: '' },
+
+                     ]
+                 }
+            ]
+        };
+		
+        var chart = echarts.init(document.getElementById('92a203f4-6225-48e9-9206-83aba483d926'));
+		chart.setOption(option);
+chart.on('legendselectchanged', function (params) {
+    var isSelected = params.selected[params.name];
+	var ecModel = chart.getModel();
+	var option = ecModel.getOption();
+	ecModel.eachSeries(function (seriesModel) {
+                var data = seriesModel.getData();
+				var name = data.getName(21);
+                
+            }, option.series);
+	var legendModels = ecModel.findComponents({mainType: 'legend'});
+
+	for (var i = 0; i < legendModels.length; i++) {
+		var legend = legendModels[i];	
+		
+                    if (legend.isSelected("")) {
+					var legendData = legend.getData();	
+		console.log(legendData);				
+                    }
+                }
+    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+    console.log(params.selected);
+});
+     window.onresize = chart.resize;
+   
+
+       
+    </script>
+	
+	
+</body>
+</html>
