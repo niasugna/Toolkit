@@ -307,28 +307,38 @@ Number.prototype.padZero= function(len, c){return String(this).padZero(len,c);}
 		
         var chart = echarts.init(document.getElementById('67ad1001-2321-4612-977e-e7168d1b6773'));
 		chart.setOption(option);
-chart.on('legendselectchanged', function (params) {
-    var isSelected = params.selected[params.name];
-	var ecModel = chart.getModel();
-	var option = ecModel.getOption();
-	ecModel.eachSeries(function (seriesModel) {
-                var data = seriesModel.getData();
-				var name = data.getName(21);
-                
-            }, option.series);
-	var legendModels = ecModel.findComponents({mainType: 'legend'});
 
-	for (var i = 0; i < legendModels.length; i++) {
-		var legend = legendModels[i];	
-		
-                    if (legend.isSelected("")) {
-					var legendData = legend.getData();	
-		console.log(legendData);				
-                    }
-                }
-    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
-    console.log(params.selected);
-});
+		chart.on('legendselectchanged', function (params) {
+
+		    var isSelected = params.selected[params.name];
+		    var ecModel = chart.getModel();
+		    var avg = ecModel.getSeriesByName('平均')[0].seriesIndex;
+		    var option = ecModel.getOption();
+
+
+		    var total = [];
+		    for (var i = 0; i < 24; i++) total[i] = 0;
+		    var bar_series_count = 0;
+		    ecModel.eachSeriesByType('bar', function (seriesModel) {
+		        bar_series_count++;
+
+		        var d = seriesModel.option.data;
+		        d.forEach(function (element, index, array) {
+		            total[index] = total[index] + element;
+		            console.log('a[' + index + '] = ' + element);
+		        });
+
+		    }, option.series);
+
+		    total.forEach(function (element, index, array) {
+		        array[index] = element / bar_series_count;
+		    });
+		    option.series[avg].data = total;
+		    chart.setOption(option);
+
+		    console.log((isSelected ? '选中了' : '取消选中了') + '图例' + params.name);
+		    console.log(params.selected);
+		});
      window.onresize = chart.resize;
    
 
