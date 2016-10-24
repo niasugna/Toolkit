@@ -96,6 +96,8 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Controls\LoadingIndicator.cs" />
+    <Compile Include="Controls\Wizard\MainWindow.xaml.cs" />
+    <Compile Include="Controls\Wizard\TabIndexConverter.cs" />
     <Compile Include="Converter\CallMethodConverter.cs" />
     <Compile Include="Converter\CategoryExDictionaryConverter.cs" />
     <Compile Include="Converter\CharacterCasingConverter.cs" />
@@ -144,6 +146,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\Wizard\WizardTabItemStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +163,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\WizardTabStyle\WizardTabStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
