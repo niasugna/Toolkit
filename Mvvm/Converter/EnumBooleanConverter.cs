@@ -30,8 +30,11 @@ namespace Pollux.Converters
             string parameterString = parameter as string;
             if (parameterString == null)
                 return DependencyProperty.UnsetValue;
-
-            return Enum.Parse(targetType, parameterString);
+            if ((bool)value)
+            {
+                return Enum.Parse(targetType, parameterString);
+            }
+            return DependencyProperty.UnsetValue;
         }
         #endregion
     }

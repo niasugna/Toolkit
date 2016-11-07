@@ -47,24 +47,30 @@ namespace Pollux.Behavior
         {
             if (e.NewValue == e.OldValue)
                 return;
-
-            object current = d.FindViewModel();
-
-            var allTriggers = Interaction.GetTriggers(d);
-            var info = Parse(d, GetMessage(d));
-
-            info.AssociatedObject = d;
-            info.ViewModel = d.FindViewModel();
-            info.View = d.FindVisualParent<UserControl>();
-
-            var trigger = new System.Windows.Interactivity.EventTrigger(info.EventName);
-            trigger.Actions.Add(new InvokeMethodAction()
+            try
             {
-                MethodName = info.MethodName,
-                MessageInfo = info
-            });
+                object current = d.FindViewModel();
 
-            allTriggers.Add(trigger);
+                var allTriggers = Interaction.GetTriggers(d);
+                var info = Parse(d, GetMessage(d));
+
+                info.AssociatedObject = d;
+                info.ViewModel = d.FindViewModel();
+                info.View = d.FindVisualParent<UserControl>();
+
+                var trigger = new System.Windows.Interactivity.EventTrigger(info.EventName);
+                trigger.Actions.Add(new InvokeMethodAction()
+                {
+                    MethodName = info.MethodName,
+                    MessageInfo = info
+                });
+
+                allTriggers.Add(trigger);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //[Click]=[MethodName]
@@ -115,7 +121,9 @@ namespace Pollux.Behavior
     public class InvokeMethodAction : TriggerAction<DependencyObject>
     {
         public string MethodName { get; set; }
+
         public MessageInfo MessageInfo { get; set; }
+
         protected override void Invoke(object o)
         {
 
@@ -164,7 +172,7 @@ namespace Pollux.Behavior
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                System.Diagnostics.Debug.WriteLine("InvokeMethodAction : \n" + e.Message);
             }
         }
         static object ParseParameter(DependencyObject d, string pm)

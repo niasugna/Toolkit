@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Pollux.Behavior
 {
@@ -66,20 +68,24 @@ namespace Pollux.Behavior
             var element = sender as ContentControl;
 
             var grid = new Grid();
-            var border = new Border() {IsHitTestVisible = false,IsEnabled= false, 
-            };
-            border.SetValue(Panel.ZIndexProperty, 98);
+            var rect = new Rectangle() { Fill = Brushes.LightGray,Opacity=0.2};
+            rect.SetValue(Panel.ZIndexProperty, 1000);
 
             var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
+            grid.Children.Add(rect);
             grid.Children.Add(_loadingIndicator);
             var content = element.Content as FrameworkElement;
             element.Content = null;
             var binding = (sender as FrameworkElement).GetBindingExpression(LoadingIndicatorEx.BindingProperty);
             _loadingIndicator.SetBinding(LoadingIndicator.IsActiveProperty, binding.ParentBinding);
-            grid.Children.Add(content);
-            grid.Children.Add(border);
-            element.Content = grid;
 
+            var binding2 = new Binding("IsActive");
+            binding2.Source = _loadingIndicator;
+            binding2.Converter = new BooleanToVisibilityConverter();
+            rect.SetBinding(FrameworkElement.VisibilityProperty, binding2);
+
+            grid.Children.Add(content);
+            element.Content = grid;
         }
     }
 }
