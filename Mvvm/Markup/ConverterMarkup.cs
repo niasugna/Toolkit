@@ -9,6 +9,7 @@ using System.Xaml;
 
 namespace Pollux.Mvvm
 {
+    //使用ViewModel上的 Convert Function => Converter 
     public class ConverterExtension : MarkupExtension
     {
         private string _method;
