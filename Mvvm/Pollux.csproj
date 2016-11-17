@@ -103,11 +103,14 @@
     <Compile Include="Converter\CategoryExDictionaryConverter.cs" />
     <Compile Include="Converter\CharacterCasingConverter.cs" />
     <Compile Include="Converter\EnumBooleanConverter.cs" />
+    <Compile Include="Converter\EnumCheckedConverter.cs" />
+    <Compile Include="Converter\ErrorConverter.cs" />
     <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\JScriptConverter.cs" />
+    <Compile Include="Converter\NullToVisibleConverter.cs" />
     <Compile Include="Converter\ResourceKeyConverter.cs" />
     <Compile Include="Converter\SnapshotConverter.cs" />
-    <Compile Include="Converter\StaticConverters.cs" />
+    <Compile Include="Converter\常用Converters.cs" />
     <Compile Include="Converter\StreamToImageConverter.cs" />
     <Compile Include="Converter\StringFormatConverter.cs" />
     <Compile Include="Converter\TristateConverter.cs" />

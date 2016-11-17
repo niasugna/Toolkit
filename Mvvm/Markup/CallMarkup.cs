@@ -6,6 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using Pollux.Helper;
+using System.Windows.Controls;
+
 
 namespace Pollux.Mvvm
 {
@@ -17,8 +20,10 @@ namespace Pollux.Mvvm
     public class Call : MarkupExtension
     {
         public string ActionName { get; set; }
+        public Type ViewType { get; set; }
 
-        public Call(string actionName) { ActionName = actionName; }
+        public Call(string actionName) { ActionName = actionName;}
+        public Call(string actionName, Type viewType) { ActionName = actionName; ViewType = viewType; }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -77,7 +82,7 @@ namespace Pollux.Mvvm
             if (target == null)
                 return;
 
-            var dataContext = GetDataContext(target);
+            var dataContext = GetDataContext(target,ViewType);
 
             if (dataContext == null)
                 throw new Exception(string.Format("DataContext on {0} is null", target));
@@ -86,7 +91,7 @@ namespace Pollux.Mvvm
                 .GetMethod(ActionName, BindingFlags.Public | BindingFlags.Instance);
             if (methodInfo == null)
                 throw new Exception(string.Format("Method({1}) is not found on ViewModel({0})", dataContext.GetType(), ActionName));
-            methodInfo.Invoke(dataContext, null);
+            methodInfo.Invoke(dataContext, new object[]{sender,e});
         }
         static Type[] GetParameterTypes(EventInfo eventInfo)
         {
@@ -94,13 +99,23 @@ namespace Pollux.Mvvm
             return invokeMethod.GetParameters().Select(p => p.ParameterType).ToArray();
         }
 
-        static object GetDataContext(object target)
+        static object GetDataContext(object target,Type type)
         {
             var depObj = target as DependencyObject;
             if (depObj == null)
                 return null;
+            if(type==null)
+                return depObj.GetValue(FrameworkElement.DataContextProperty) ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
 
-            return depObj.GetValue(FrameworkElement.DataContextProperty) ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
+            var method = typeof(VisualTreeHelperEx).GetMethods().Where(m => m.Name == "FindVisualParent").First();
+            var gm = method.MakeGenericMethod(type);
+            var parent = gm.Invoke(depObj, new object[]{depObj}) as FrameworkElement;
+
+            //var view = depObj.FindVisualParent<UserControl>();
+            if(parent!=null)
+                return parent.DataContext;
+            return null;
+            
         }
 
     }
