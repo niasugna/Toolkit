@@ -62,6 +62,7 @@
     <Reference Include="System.Activities" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Net.Http" />
@@ -118,6 +119,7 @@
     <Compile Include="Converter\ValueToStateNameConverter.cs" />
     <Compile Include="Converter\XmlConverter.cs" />
     <Compile Include="Extension\AsyncExtension.cs" />
+    <Compile Include="Extension\Ef6IncludeExtension.cs" />
     <Compile Include="Helper\ByteArrayHelper.cs" />
     <Compile Include="Helper\DataReaderHelper.cs" />
     <Compile Include="Helper\DateTimeHelper.cs" />
