@@ -30,7 +30,7 @@ namespace Pollux.Mvvm
             var rootObjectProvider = serviceProvider.GetService(typeof(IRootObjectProvider)) as IRootObjectProvider;
             var root = rootObjectProvider.RootObject as FrameworkElement;
             //root.DataContextChanged += root_DataContextChanged;
-            //var isDesignMode = ServiceProvider.IsDesignMode;
+            //var isDesignMode = serviceProvider.IsDesignMode;
 
             /*
             var provideValueTarget = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
@@ -43,8 +43,7 @@ namespace Pollux.Mvvm
 
 
 
-            //var isDesignMode = DesignerProperties.GetIsInDesignMode(target);
-
+            //var isDesignMode = System.ComponentModel.DesignerProperties.GetIsInDesignMode(root);
 
             return new Pollux.Converter.CallMethodConverter(root, _method);
 

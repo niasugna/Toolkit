@@ -190,20 +190,23 @@ namespace Pollux.Behavior
     }
     public static class Layout
     {
-
-
-        public static string GetGrids(DependencyObject obj)
+        public static string GetGridDefinitions(DependencyObject obj)
         {
-            return (string)obj.GetValue(GridsProperty);
+            return (string)obj.GetValue(GridDefinitionsProperty);
         }
 
-        public static void SetGrids(DependencyObject obj, string value)
+        public static void SetGridDefinitions(DependencyObject obj, string value)
         {
-            obj.SetValue(GridsProperty, value);
+            obj.SetValue(GridDefinitionsProperty, value);
         }
 
-        public static readonly DependencyProperty GridsProperty =
-            DependencyProperty.RegisterAttached("Grids", typeof(string), typeof(Layout), new PropertyMetadata("[*],[*]",
+        public static readonly DependencyProperty GridDefinitionsProperty =
+            DependencyProperty.RegisterAttached("GridDefinitions", typeof(string), typeof(Layout), new FrameworkPropertyMetadata("[*],[*]",
+                FrameworkPropertyMetadataOptions.AffectsRender |
+                FrameworkPropertyMetadataOptions.AffectsParentMeasure |
+                FrameworkPropertyMetadataOptions.AffectsParentArrange |
+                FrameworkPropertyMetadataOptions.AffectsMeasure|
+                FrameworkPropertyMetadataOptions.AffectsParentArrange,
                 new PropertyChangedCallback(OnMessageChanged)));
         //[{Auto,*,Auto},{Auto}]
         public static void OnMessageChanged(DependencyObject d,DependencyPropertyChangedEventArgs e)
@@ -215,8 +218,11 @@ namespace Pollux.Behavior
 
             if (e.NewValue == e.OldValue)
                 return;
+            
+            grid.RowDefinitions.Clear();
+            grid.ColumnDefinitions.Clear();
 
-            string message = GetGrids(grid);
+            string message = GetGridDefinitions(grid);
             var match = Regex.Match(message, "\\[(?<ROW>[0-9.,Auto\\*]+)\\],\\[(?<COL>[0-9.,Auto\\*]+)\\]");
             var row = match.Groups["ROW"].Value;
             var col = match.Groups["COL"].Value;
@@ -224,43 +230,43 @@ namespace Pollux.Behavior
             var rowsLength = row.Split(',');
             var colsLength = col.Split(',');
 
-            foreach(string l in rowsLength)
+            foreach(string height in rowsLength)
             {
                 double result = 0;
 
-                if(l == "Auto")
+                if(height == "Auto")
                     grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                else if (l == "*")
+                else if (height == "*")
                     grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-                else if (l.EndsWith("*"))
+                else if (height.EndsWith("*"))
                 {
-                    if (double.TryParse(l.TrimEnd('*'), out result))
+                    if (double.TryParse(height.TrimEnd('*'), out result))
                     {
                         grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(result, GridUnitType.Star) });
                     }
                 }
-                else if (double.TryParse(l, out result))
+                else if (double.TryParse(height, out result))
                 {
                     grid.RowDefinitions.Add(new RowDefinition() { Height =new GridLength( result, GridUnitType.Pixel) });
                 }
             }
 
-            foreach (string l in colsLength)
+            foreach (string width in colsLength)
             {
                 double result = 0;
 
-                if (l == "Auto")
+                if (width == "Auto")
                     grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-                else if(l == "*")
+                else if(width == "*")
                     grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
-                else if (l.EndsWith("*"))
+                else if (width.EndsWith("*"))
                 {
-                    if (double.TryParse(l.TrimEnd('*'), out result))
+                    if (double.TryParse(width.TrimEnd('*'), out result))
                     {
                         grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(result, GridUnitType.Star) });
                     }
                 }
-                else if (double.TryParse(l, out result))
+                else if (double.TryParse(width, out result))
                 {
                     grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(result, GridUnitType.Pixel) });
                 }

@@ -8,11 +8,17 @@ using System.Windows.Controls;
 using System.Windows.Interactivity;
 using Pollux.Helper;
 using System.Text.RegularExpressions;
+using NLog;
 
 namespace Pollux.Behavior
 {
+    
+
+
     public class EventToMethod
     {
+        
+
         public static object GetViewModel(DependencyObject obj)
         {
             return (object)obj.GetValue(ViewModelProperty);
@@ -120,6 +126,8 @@ namespace Pollux.Behavior
     }
     public class InvokeMethodAction : TriggerAction<DependencyObject>
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public string MethodName { get; set; }
 
         public MessageInfo MessageInfo { get; set; }

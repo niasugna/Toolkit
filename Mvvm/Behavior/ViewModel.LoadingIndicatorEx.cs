@@ -16,7 +16,7 @@ namespace Pollux.Behavior
     {
         public static bool GetBinding(DependencyObject obj)
         {
-            System.Diagnostics.Debugger.Break();
+            //System.Diagnostics.Debugger.Break();
             return (bool)obj.GetValue(BindingProperty);
         }
 
@@ -68,7 +68,7 @@ namespace Pollux.Behavior
             var element = sender as ContentControl;
 
             var grid = new Grid();
-            var rect = new Rectangle() { Fill = Brushes.LightGray,Opacity=0.2};
+            var rect = new Rectangle() { Fill = Brushes.LightGray,Opacity=0};
             rect.SetValue(Panel.ZIndexProperty, 1000);
 
             var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
@@ -84,7 +84,10 @@ namespace Pollux.Behavior
             binding2.Converter = new BooleanToVisibilityConverter();
             rect.SetBinding(FrameworkElement.VisibilityProperty, binding2);
 
-            grid.Children.Add(content);
+            if (content != null)
+            {
+                grid.Children.Add(content);
+            }
             element.Content = grid;
         }
     }

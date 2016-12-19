@@ -15,7 +15,9 @@ namespace Pollux.Converter
     public class CallMethodConverter : IValueConverter
     {
         public DependencyObject View { get; set; }
+
         public string MethodName { get; set; }
+
         public CallMethodConverter(DependencyObject view, string methodName)
         {
             View = view;
@@ -28,10 +30,15 @@ namespace Pollux.Converter
             var dcType = vm.GetType();
 
             var method = dcType.GetMethod(MethodName);
+            if (method == null)
+            {
+                return DependencyProperty.UnsetValue;
+                throw new ArgumentNullException(MethodName, string.Format("{0} is not found on {1}.", MethodName, dcType));
+            }
 
             return method.Invoke(vm, new object[] { value });
 
-            //return DependencyProperty.UnsetValue;
+            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

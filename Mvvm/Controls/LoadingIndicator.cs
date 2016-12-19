@@ -135,8 +135,9 @@ namespace LoadingIndicators.WPF
         /// <summary>
         /// Initializes a new instance of the <see cref="LoadingIndicators.WPF.LoadingIndicator"/> class.
         /// </summary>
-        public LoadingIndicator()
+        static LoadingIndicator()
         {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LoadingIndicator), new FrameworkPropertyMetadata(typeof(LoadingIndicator)));
         }
     }
 }

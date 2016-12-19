@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace Pollux.Behavior
 {
-    public class AutoLoading
+    public class ViewModel
     {
-        static AutoLoading()
+        static ViewModel()
         {
         }
 
@@ -28,7 +28,7 @@ namespace Pollux.Behavior
 
         // Using a DependencyProperty as the backing store for AutoLoading.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AutoLoadingProperty =
-            DependencyProperty.RegisterAttached("AutoLoading", typeof(bool), typeof(AutoLoading), new PropertyMetadata(false,
+            DependencyProperty.RegisterAttached("ViewModel", typeof(bool), typeof(ViewModel), new PropertyMetadata(false,
                 (s, e) =>
                 {
                     var vm = (s as FrameworkElement).DataContext as BusyViewModelBase;
@@ -36,6 +36,8 @@ namespace Pollux.Behavior
                     {
                         vm.Load();
                     }
+                    else
+                        throw new NotSupportedException(string.Format("DataContext of {0} is null.",s));
                 }));
 
         

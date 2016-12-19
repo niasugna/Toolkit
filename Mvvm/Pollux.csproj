@@ -87,12 +87,12 @@
     <Compile Include="Async\DataProxy.cs" />
     <Compile Include="Async\NotifyTaskCompletion.cs" />
     <Compile Include="Async\AsyncLazy.cs" />
-    <Compile Include="Behavior\AutoLoading.cs" />
+    <Compile Include="Behavior\ViewModel.AutoLoading.cs" />
     <Compile Include="Behavior\Behavior.cs" />
     <Compile Include="Behavior\BindVisualStateBehavior.cs" />
-    <Compile Include="Behavior\DatePickerExtension.cs" />
+    <Compile Include="Behavior\DatePickerCalendar.cs" />
     <Compile Include="Behavior\EventToMethod.cs" />
-    <Compile Include="Behavior\LoadingIndicatorEx.cs" />
+    <Compile Include="Behavior\ViewModel.LoadingIndicatorEx.cs" />
     <Compile Include="Behavior\VisualStateUtilities.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
@@ -145,6 +145,7 @@
     <Compile Include="Styles\MonitorHelper.cs" />
     <Compile Include="ViewModel\BoolToVisibility.cs" />
     <Compile Include="ViewModel\CheckableModel.cs" />
+    <Compile Include="ViewModel\PropertyValidatedBase.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,10 @@
     <Page Include="Styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ToggleButtonCircleStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\WizardTabStyle\WizardTabStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

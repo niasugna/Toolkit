@@ -112,13 +112,12 @@ namespace Pollux.Behavior
                 return null;
             return new DateTime(selectedDate.Value.Year, selectedDate.Value.Month, 1);
         }
-    }
 
-    public class DatePickerDateFormat
-    {
+
+        #region DatePicker DateFormat
         public static readonly DependencyProperty DateFormatProperty =
-            DependencyProperty.RegisterAttached("DateFormat", typeof(string), typeof(DatePickerDateFormat),
-                                                new PropertyMetadata(OnDateFormatChanged));
+       DependencyProperty.RegisterAttached("DateFormat", typeof(string), typeof(DatePickerCalendar),
+                                           new PropertyMetadata(OnDateFormatChanged));
 
         public static string GetDateFormat(DependencyObject dobj)
         {
@@ -155,8 +154,8 @@ namespace Pollux.Behavior
 
             var dropDownButton = GetTemplateButton(datePicker);
 
-            datePicker.CalendarOpened -= DatePickerOnCalendarOpened;
-            datePicker.CalendarOpened += DatePickerOnCalendarOpened;
+            datePicker.CalendarOpened -= DatePickerDateFormarOnCalendarOpened;
+            datePicker.CalendarOpened += DatePickerDateFormarOnCalendarOpened;
 
             // Handle Dropdownbutton PreviewMouseUp to prevent issue of flickering textboxes
             dropDownButton.PreviewMouseUp -= DropDownButtonPreviewMouseUp;
@@ -208,7 +207,7 @@ namespace Pollux.Behavior
                 control.ApplyTemplate();
                 return (TextBox)control.Template.FindName("PART_TextBox", control);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
 
@@ -234,7 +233,7 @@ namespace Pollux.Behavior
             datePicker.SelectedDate = DatePickerDateTimeConverter.StringToDateTime(datePicker, formatStr, dateStr);
         }
 
-        private static void DatePickerOnCalendarOpened(object sender, RoutedEventArgs e)
+        private static void DatePickerDateFormarOnCalendarOpened(object sender, RoutedEventArgs e)
         {
             /* When DatePicker's TextBox is not focused and its Calendar is opened by clicking its calendar button
              * its text will be the result of its internal date parsing until its TextBox is focused and another
@@ -282,9 +281,8 @@ namespace Pollux.Behavior
 
         }
 
+        #endregion
     }
-
-
 
     public static class FEExten
     {
