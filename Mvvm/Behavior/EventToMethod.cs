@@ -9,6 +9,8 @@ using System.Windows.Interactivity;
 using Pollux.Helper;
 using System.Text.RegularExpressions;
 using NLog;
+using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace Pollux.Behavior
 {
@@ -55,13 +57,20 @@ namespace Pollux.Behavior
                 return;
             try
             {
-                object current = d.FindViewModel();
+                //object current = d.FindViewModel();
 
                 var allTriggers = Interaction.GetTriggers(d);
                 var info = Parse(d, GetMessage(d));
+                if(d is Visual || d is Visual3D)
+                    info.ViewModel = d.FindViewModel();
+                else
+                    info.ViewModel = GetViewModel(d);
+
+
+                var avm = GetViewModel(d);
 
                 info.AssociatedObject = d;
-                info.ViewModel = d.FindViewModel();
+                
                 info.View = d.FindVisualParent<UserControl>();
 
                 var trigger = new System.Windows.Interactivity.EventTrigger(info.EventName);
@@ -175,6 +184,10 @@ namespace Pollux.Behavior
                             .Select(s => ParseParameter(this.AssociatedObject, (string)s)).ToArray();
                         result.Invoke(viewModel, parameters);
                         return;
+                    }
+                    else
+                    {
+                        throw new Exception(string.Format("Method : {0} is not found on ViewModel({1})",MethodName,viewModel.GetType()));
                     }
                 }
             }

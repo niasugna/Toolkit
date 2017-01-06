@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using System.CodeDom.Compiler;
 using System.Reflection;
+using System.Linq;
 
 namespace Utils.Avalon
 {
@@ -25,7 +26,7 @@ namespace Utils.Avalon
 
         static JScriptConverter()
         {
-            string source =
+             string source =
                 @"import System; 
 
                 class Eval
@@ -36,11 +37,18 @@ namespace Utils.Avalon
                     }
                 }";
 
-            CompilerParameters cp = new CompilerParameters();
+             CompilerParameters cp = new CompilerParameters();
             cp.GenerateInMemory = true;
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-                if (System.IO.File.Exists(assembly.Location))
-                    cp.ReferencedAssemblies.Add(assembly.Location);
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies().Where(o=>!o.IsDynamic))
+            {
+                try
+                {
+                    if (System.IO.File.Exists(assembly.Location))
+                        cp.ReferencedAssemblies.Add(assembly.Location);
+                }
+                catch {
+                }
+            }
 
             CompilerResults results = (new Microsoft.JScript.JScriptCodeProvider())
                 .CompileAssemblyFromSource(cp, source);

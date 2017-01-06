@@ -54,13 +54,16 @@ namespace Pollux.Behavior
 			double fromValue = ((GridLength)GetValue(GridLengthAnimation.FromProperty)).Value;
 			double toValue = ((GridLength)GetValue(GridLengthAnimation.ToProperty)).Value;
 
+
 			if (fromValue > toValue)
 			{
-				return new GridLength((1 - animationClock.CurrentProgress.Value) * (fromValue - toValue) + toValue, this.To.IsStar ? GridUnitType.Star : GridUnitType.Pixel);
+				return new GridLength((1 - animationClock.CurrentProgress.Value) * (fromValue - toValue) + toValue, this.To.IsStar ? GridUnitType.Star : this.To.IsAuto ? GridUnitType.Auto : GridUnitType.Pixel);
+                //return new GridLength((1 - animationClock.CurrentProgress.Value) * (fromValue - toValue) + toValue,GridUnitType.Star);
 			}
 			else
 			{
-				return new GridLength((animationClock.CurrentProgress.Value) * (toValue - fromValue) + fromValue, this.To.IsStar ? GridUnitType.Star : GridUnitType.Pixel);
+                return new GridLength((animationClock.CurrentProgress.Value) * (toValue - fromValue) + fromValue, this.To.IsStar ? GridUnitType.Star : this.To.IsAuto ? GridUnitType.Auto : GridUnitType.Pixel);
+                //return new GridLength((animationClock.CurrentProgress.Value) * (toValue - fromValue) + fromValue,GridUnitType.Star);
 			}
 		}
 	}

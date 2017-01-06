@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils.Avalon;
 
 namespace Pollux.Converters
 {
@@ -13,5 +14,7 @@ namespace Pollux.Converters
         public static NullToVisibleConverter NullToVisibleConverter = new NullToVisibleConverter();
         public static NotNullToVisibleConverter NotNullToVisibleConverter = new NotNullToVisibleConverter();
         public static StreamToImageConverter StreamToImageConverter = new StreamToImageConverter();
+
+        public static JScriptConverter JScriptConverter = new JScriptConverter();
     }
 }
