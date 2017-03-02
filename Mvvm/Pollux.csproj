@@ -119,6 +119,7 @@
     <Compile Include="Converter\TypeOfConverter.cs" />
     <Compile Include="Converter\ValueToStateNameConverter.cs" />
     <Compile Include="Converter\XmlConverter.cs" />
+    <Compile Include="DynamicXml.cs" />
     <Compile Include="Extension\AsyncExtension.cs" />
     <Compile Include="Extension\Ef6IncludeExtension.cs" />
     <Compile Include="Helper\ByteArrayHelper.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Markup\ConverterMarkup.cs" />
     <Compile Include="Markup\ValueConverterMarkup.cs" />
     <Compile Include="Mvvm\BindableBase.cs" />
+    <Compile Include="Mvvm\DictionaryBindingList.cs" />
     <Compile Include="Mvvm\PropertySupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Styles\MetroWindowStyle.cs" />
