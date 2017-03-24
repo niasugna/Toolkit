@@ -24,7 +24,7 @@ namespace Pollux.Mvvm
             var eventHandler = this.PropertyChanged;
             if (eventHandler != null)
             {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
+                eventHandler.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
