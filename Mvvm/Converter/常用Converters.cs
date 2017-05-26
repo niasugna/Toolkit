@@ -14,6 +14,7 @@ namespace Pollux.Converters
         public static NullToVisibleConverter NullToVisibleConverter = new NullToVisibleConverter();
         public static NotNullToVisibleConverter NotNullToVisibleConverter = new NotNullToVisibleConverter();
         public static StreamToImageConverter StreamToImageConverter = new StreamToImageConverter();
+        public static ResourceKeyConverter ResourceKeyConverter = new ResourceKeyConverter();
 
         public static JScriptConverter JScriptConverter = new JScriptConverter();
     }

@@ -7,7 +7,7 @@ namespace Pollux.Converters
 {
 
     //load specified resource by key
-    class ResourceKeyConverter : IValueConverter
+    public class ResourceKeyConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -21,19 +21,69 @@ namespace Pollux.Controls.Wizard
             var count = items.Count();
 
             var index = items.IndexOf(tabItem);
-            return index + 1;
-
-            if (index == 0)
-                return "First";
-            else if (count - 1 == index)
-                return "Last";
+            if (parameter == null)
+            {
+                return index + 1;
+            }
             else
-                return "";
+            {
+                if (index == 0)
+                    return string.Equals("First", parameter);    
+                else if (count - 1 == index)
+                    return string.Equals("Last", parameter);    
+                else
+                    return false;
+
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return DependencyProperty.UnsetValue;
+        }
+    }
+
+    public class IsProgressedConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            var tab = values[0] as TabItem;
+            var itemControl =ItemsControl.ItemsControlFromItemContainer(tab);
+            int index = itemControl.ItemContainerGenerator.IndexFromContainer(tab);
+
+            bool checkNextItem = System.Convert.ToBoolean(parameter.ToString());
+            if (checkNextItem)
+            {
+                if ((int)values[1] == itemControl.Items.Count - 1)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+
+            if (index < (int)values[1])
+            {
+                return Visibility.Visible;
+            }
+            else
+            {
+                return Visibility.Collapsed;
+            }
+
+
+            if (checkNextItem == true)
+            {
+                index++;
+            }
+
+            return Visibility.Collapsed;
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }
