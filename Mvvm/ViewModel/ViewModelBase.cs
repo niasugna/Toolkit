@@ -101,6 +101,9 @@ namespace Pollux.ViewModel
         /// <returns></returns>
         public virtual async Task RefreshAsync()
         {
+            if (IsInDesignMode)
+                return;
+
             await Task.Delay(0);
             return;
         }

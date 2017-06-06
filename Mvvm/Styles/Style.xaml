@@ -5,6 +5,7 @@
         
         <!-- Wizard : CircleTabItemStyle-->
         <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/WizardTabStyle/WizardCircleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/WizardTabStyle/WizardProgressStyle.xaml" />
         
         
         <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/ToggleButtonCircleStyle.xaml" />
