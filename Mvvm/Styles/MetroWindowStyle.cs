@@ -8,6 +8,8 @@ using System.Windows.Interop;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
 using Pollux.Helper;
+
+
 namespace IVSAnalysisResultPlayer
 {
     partial class MetroWindowStyle

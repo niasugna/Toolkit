@@ -17,7 +17,9 @@
                                 <VisualState x:Name="Small" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="ActiveStates">
-                                <VisualState x:Name="Inactive"/>
+                                <VisualState x:Name="Inactive">
+                                </VisualState>
+
                                 <VisualState x:Name="Active">
                                     <Storyboard SpeedRatio="{TemplateBinding SpeedRatio}">
                                         <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="PART_Canvas0" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">

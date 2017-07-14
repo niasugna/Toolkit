@@ -57,6 +57,7 @@ namespace LoadingIndicators.WPF
                 if ((bool)e.NewValue == false)
                 {
                     VisualStateManager.GoToElementState(li.PART_Border, "Inactive", false);
+
                     li.PART_Border.Visibility = Visibility.Collapsed;
                 }
                 else

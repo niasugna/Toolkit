@@ -72,14 +72,6 @@ namespace Pollux.Controls.Wizard
             {
                 return Visibility.Collapsed;
             }
-
-
-            if (checkNextItem == true)
-            {
-                index++;
-            }
-
-            return Visibility.Collapsed;
         }
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {

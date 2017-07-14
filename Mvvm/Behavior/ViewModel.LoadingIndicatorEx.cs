@@ -71,7 +71,7 @@ namespace Pollux.Behavior
             var rect = new Rectangle() { Fill = Brushes.LightGray,Opacity=0};
             rect.SetValue(Panel.ZIndexProperty, 1000);
 
-            var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator();
+            var _loadingIndicator = new LoadingIndicators.WPF.LoadingIndicator() { SpeedRatio = 2};
             grid.Children.Add(rect);
             grid.Children.Add(_loadingIndicator);
             var content = element.Content as FrameworkElement;

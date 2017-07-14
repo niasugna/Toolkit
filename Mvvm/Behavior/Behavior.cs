@@ -273,4 +273,62 @@ namespace Pollux.Behavior
             }
         }
     }
+
+    class UpperCasingBehavior : TextBlock
+    {
+
+        public UpperCasingBehavior()
+        {
+            this.Initialized += UpperCasingBehavior_Initialized;
+        }
+
+        void UpperCasingBehavior_Initialized(object sender, EventArgs e)
+        {
+
+        }
+
+        public static bool GetUpperCasing(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(UpperCasingProperty);
+        }
+
+        public static void SetUpperCasing(DependencyObject obj, bool value)
+        {
+            obj.SetValue(UpperCasingProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for UpperCasing.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UpperCasingProperty = DependencyProperty.RegisterAttached("UpperCasing", typeof(bool), typeof(UpperCasingBehavior), new PropertyMetadata(false,
+                new PropertyChangedCallback(
+                    (s, e) =>
+                    {
+                        if ((bool)e.NewValue == true)
+                        {
+
+                            try
+                            {
+                                var textBlock = s as TextBlock;
+                                var text = textBlock.GetValue(TextBlock.TextProperty);
+                                var be = textBlock.GetBindingExpression(TextBlock.TextProperty);
+                                if (be == null)
+                                {
+                                    var binding = new Binding();
+                                    //binding.Path= new PropertyPath("Text");
+                                    binding.Converter = new Pollux.Converters.CharacterCasingConverter();
+                                    binding.ConverterParameter = "Upper";
+                                    textBlock.SetBinding(TextBlock.TextProperty, binding);
+                                }
+                                //var binding = be.ParentBinding;
+                                //binding.Converter = new CharacterCasingConverter();
+                                //binding.ConverterParameter = "Upper";
+                                //textBlock.SetBinding(TextBlock.TextProperty, binding);
+
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    })
+                    ));
+    }
 }
