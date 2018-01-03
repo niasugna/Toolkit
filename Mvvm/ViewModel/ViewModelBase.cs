@@ -9,9 +9,15 @@ using System.Threading.Tasks;
 
 namespace Pollux.ViewModel
 {
-    public abstract class BusyViewModelBase : BindableBase
+    //http api viewmodel
+    public abstract class BusyViewModelBase : BindableBase, IDisposable
     {
-        public event EventHandler Closed;
+        protected static readonly NLog.Logger _logger = NLog.LogManager.GetLogger("ViewModel");
+        public NLog.Logger Logger { get { return _logger; } }
+
+        public bool IsAuthorized { get; set; }
+
+        public event System.EventHandler Closed;
 
         private string _VisualState;
         public string VisualState
@@ -65,6 +71,7 @@ namespace Pollux.ViewModel
 
                 return true;
             }
+            
             catch (Exception e)
             {
                 var query = new StackTrace(e, true).GetFrames()         // get the frames
@@ -77,7 +84,7 @@ namespace Pollux.ViewModel
                                   Method = frame.GetMethod(),
                                   Class = frame.GetMethod().DeclaringType,
                               });
-                Trace.WriteLine("Exception  : " + query.First().Class);
+                Logger.Debug("Exception  : " + query.First().Class);
 
                 IsFaulted = true;
                 OnPropertyChanged(() => IsFaulted);
@@ -110,7 +117,7 @@ namespace Pollux.ViewModel
 
         public BusyViewModelBase()
         {
-            
+            IsAuthorized = true;
         }
         public virtual void CloseView()
         {
@@ -137,10 +144,35 @@ namespace Pollux.ViewModel
         }
         public object CreateView(object viewModel)
         {
-            var modelType = viewModel.GetType();
-            var viewClassName = modelType.Name.Replace("ViewModel", "View");
-            var viewType = modelType.Assembly.GetTypes().Where(t => t.IsClass && t.Name == viewClassName).Single();
-            return Activator.CreateInstance(viewType);
+            try
+            {
+                var modelType = viewModel.GetType();
+                var viewClassName = modelType.Name.Replace("ViewModel", "View");
+                var classes = modelType.Assembly.GetTypes().Where(t => t.IsClass);
+                var viewType = classes.Where(t=>t.Name == viewClassName).SingleOrDefault();
+                return Activator.CreateInstance(viewType);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e.Message);
+                throw e;
+            }
+        }
+
+        public object _MyView = null;
+        public object MyView
+        {
+            get
+            {
+                if (_MyView == null)
+                    _MyView = CreateView(this);
+
+                return _MyView;
+            }
+        }
+
+        public virtual void Dispose()
+        {
         }
     }
 }

@@ -14,7 +14,7 @@
     <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#F0F0F0" />
     <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#D9D9D9" />
     <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC" />
-    <SolidColorBrush x:Key="TabItem.Header.Selected.Background" Color="#00779F" />
+    <!--<SolidColorBrush x:Key="TabItem.Header.Selected.Background" Color="#00779F" />-->
 
     <Style x:Key="WizardCircleTabItemStyle" TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -246,7 +246,7 @@
                                 Grid.Column="0"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1" Margin="15" CornerRadius="10"
+                                BorderThickness="1" Margin="15" CornerRadius="0"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 KeyboardNavigation.TabIndex="2"
                                 KeyboardNavigation.TabNavigation="Local">

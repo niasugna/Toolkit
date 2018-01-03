@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -125,6 +126,23 @@ namespace Pollux.Helper
 
             // throws InvalidCastException if types are incompatible
             return (T)retval;
+        }
+
+        public static ExpandoObject ToExpandoObject(this object value)
+        {
+
+            if (value == null)
+            {
+                System.Diagnostics.Trace.WriteLine("Convert To ExpandoObject Failed");
+            }
+            var obj = new ExpandoObject() as IDictionary<string, object>;
+
+            foreach (var property in value.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                obj.Add(property.Name, property.GetValue(value, null));
+            }
+
+            return obj as ExpandoObject;
         }
     }
 }

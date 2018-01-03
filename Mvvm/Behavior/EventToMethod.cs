@@ -53,6 +53,9 @@ namespace Pollux.Behavior
 
         static void OnMessageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+                return;
+
             if (e.NewValue == e.OldValue)
                 return;
             try
@@ -91,8 +94,8 @@ namespace Pollux.Behavior
         //[Click]=[MethodName]
         static MessageInfo Parse(DependencyObject d, string message)
         {
-            message = message.Replace("Event", string.Empty);
-            message = message.Replace("Action", string.Empty);
+            //message = message.Replace("Event", string.Empty);
+            //message = message.Replace("Action", string.Empty);
             message = message.Replace(" ", string.Empty);
             var match = Regex.Match(message, "(?<EVENT>[\\w]+)([\\]])(=)(\\[)(?<METHOD_NAME>[\\w]+)(?<PARAMETER>[\\($\\w,\\)]+)?(\\])");
             var ev = match.Groups["EVENT"].Value;
@@ -209,7 +212,7 @@ namespace Pollux.Behavior
                 case "$dataContext":
                     return d.FindViewModel();
                 default:
-                    return null;
+                    throw new ArgumentException("Unknown argument.",pm);
             }
         }
         private object FindViewModel(DependencyObject associatedObject)

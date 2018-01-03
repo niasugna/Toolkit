@@ -31,7 +31,25 @@ namespace Pollux.Helper
                     throw new OperationCanceledException(cancellationToken);
             return await task;
         }
-
+        public static Task StartSTATask(Action action)
+        {
+            TaskCompletionSource<object> source = new TaskCompletionSource<object>();
+            Thread thread = new Thread(() =>
+            {
+                try
+                {
+                    action();
+                    source.SetResult(null);
+                }
+                catch (Exception ex)
+                {
+                    source.SetException(ex);
+                }
+            });
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            return source.Task;
+        }
         public static Task<T> StartSTATask<T>(Func<T> func)
         {
             var tcs = new TaskCompletionSource<T>();

@@ -17,13 +17,13 @@ namespace Pollux.Mvvm
 
     //http://www.jonathanantoine.com/2011/09/23/wpf-4-5s-markupextension-invoke-a-method-on-the-viewmodel-datacontext-when-an-event-is-raised/
     //<Grid PreviewMouseDown="{custMarkup:Call MyMethodToCallOnTheViewModel}" />
-    public class Call : MarkupExtension
+    public class EventHandlerMarkup : MarkupExtension
     {
         public string ActionName { get; set; }
         public Type ViewType { get; set; }
 
-        public Call(string actionName) { ActionName = actionName;}
-        public Call(string actionName, Type viewType) { ActionName = actionName; ViewType = viewType; }
+        public EventHandlerMarkup(string actionName) { ActionName = actionName;}
+        public EventHandlerMarkup(string actionName, Type viewType) { ActionName = actionName; ViewType = viewType; }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -31,9 +31,10 @@ namespace Pollux.Mvvm
             if (targetProvider == null)
                 throw new InvalidOperationException(@"The CallAction extension can't retrieved the IProvideValueTarget service.");
 
-            var target = targetProvider.TargetObject as FrameworkElement;
+            var target = targetProvider.TargetObject as DependencyObject;
             if (target == null)
-                throw new InvalidOperationException(@"The CallAction extension can only be used on a FrameworkElement.");
+                //throw new InvalidOperationException(@"The CallAction extension can only be used on a FrameworkElement.");
+                throw new InvalidOperationException(@"This CallAction extension can only be used on a DependencyObject.");
 
             var targetEventAddMethod = targetProvider.TargetProperty as MethodInfo;
             Delegate returnedDelegate = null;
@@ -77,7 +78,7 @@ namespace Pollux.Mvvm
         }
         void MyProxyHandler(object sender, EventArgs e)
         {
-            FrameworkElement target = sender as FrameworkElement;
+            DependencyObject target = sender as DependencyObject;
 
             if (target == null)
                 return;

@@ -10,11 +10,11 @@ using System.Xaml;
 namespace Pollux.Mvvm
 {
     //使用ViewModel上的 Convert Function => Converter 
-    public class ConverterExtension : MarkupExtension
+    public class FunctionConverterExtension : MarkupExtension
     {
         private string _method;
 
-        public ConverterExtension(string method)
+        public FunctionConverterExtension(string method)
         {
             //int pi = method.IndexOf('.');
             //this.Binding.ElementName = method.Substring(0, pi);

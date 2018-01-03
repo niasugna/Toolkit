@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Pollux.Converters
 {
-    class CharacterCasingConverter : IValueConverter
+    public class CharacterCasingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -12,10 +12,11 @@ namespace Pollux.Helper
     //http://stackoverflow.com/questions/20328598/open-default-mail-client-along-with-a-attachment
     public static class MailUtility
     {
+        //Save as *.eml
         //Extension _method for MailMessage to save to a file on disk
-        public static void Save(this MailMessage message, string filename, bool addUnsentHeader = true)
+        public static void Save(this MailMessage message, string emlFilename, bool addUnsentHeader = true)
         {
-            using (var filestream = File.Open(filename, FileMode.Create))
+            using (var filestream = File.Open(emlFilename, FileMode.Create))
             {
                 if (addUnsentHeader)
                 {
