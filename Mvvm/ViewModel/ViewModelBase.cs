@@ -64,6 +64,8 @@ namespace Pollux.ViewModel
         {
             try
             {
+                IsFaulted = false;
+
                 IsBusy = true;
                 OnPropertyChanged(() => IsBusy);
 
@@ -154,7 +156,7 @@ namespace Pollux.ViewModel
             }
             catch (Exception e)
             {
-                Trace.WriteLine(e.Message);
+                Logger.Fatal(e, "ViewModelBase : CreateView");
                 throw e;
             }
         }

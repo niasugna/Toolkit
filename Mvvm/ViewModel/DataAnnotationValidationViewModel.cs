@@ -55,7 +55,7 @@ namespace Pollux.ViewModel
 
             if (validationResults.Any())
             {
-                this.errorsContainer.SetErrors(validationContext.MemberName, validationResults);
+             this.errorsContainer.SetErrors(validationContext.MemberName, validationResults);
                 //OnPropertyChanged(string.Format(System.Globalization.CultureInfo.CurrentCulture, "Item[{0}]", validationContext.MemberName));
             }
             else
@@ -108,5 +108,8 @@ namespace Pollux.ViewModel
             get { return this.errorsContainer.HasErrors; }
         }
     }
-    
+
+    public class DataAnnotationViewModel<T> : DataAnnotationViewModel
+    {
+    }
 }
