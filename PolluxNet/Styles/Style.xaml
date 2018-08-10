@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:controls="clr-namespace:LoadingIndicators.WPF" 
+                    xmlns:p="clr-namespace:Pollux.Behavior">
+    <ResourceDictionary.MergedDictionaries>
+        <!--<ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/MaterialDesign/CustomizedDataGridStyle.xaml" />-->
+        
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/LoadingArcs.xaml" />
+        
+        <!-- Wizard : CircleTabItemStyle-->
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/WizardTabStyle/WizardCircleStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/WizardTabStyle/WizardProgressStyle.xaml" />
+        
+        
+        <ResourceDictionary Source="pack://application:,,,/Pollux;component/Styles/ToggleButtonCircleStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <SolidColorBrush x:Key="AccentColorBrush" Color="#CC119EDA" />
+    <Style BasedOn="{StaticResource LoadingIndicatorArcsStyleKey}" TargetType="{x:Type controls:LoadingIndicator}">
+        <!--  <Setter Property="IsActive" Value="{Binding Path=(p:LoadingIndicatorEx.Binding),Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>  -->
+        <Setter Property="Panel.ZIndex" Value="99" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentColorBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+</ResourceDictionary>

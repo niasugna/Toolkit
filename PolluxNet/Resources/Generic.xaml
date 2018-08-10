@@ -1,0 +1,347 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    >
+    
+    <Geometry x:Key="DownArrow">M0,0 L1,0 0.5,1Z</Geometry>
+    <Geometry x:Key="UpArrow">M0,1 L1,1 0.5,0Z</Geometry>
+    <Geometry x:Key="RightArrow">M0,0 L1,0.5 0,1Z</Geometry>
+    <Geometry x:Key="LeftArrow">M0,0.5 L1,1 1,0Z</Geometry>
+    <Geometry x:Key="CloseX">M0,0 L1,1 M0,1 L1,0</Geometry>
+    <Geometry x:Key="AddPage" >
+        M21,25L21,22 22,22 22,25 25,25 25,26 22,26 22,29 21,29 21,26 18,26 18,25 21,25 21,25z M16.0218178,29L6.99742191,29C5.89092539,29,5,28.1012878,5,26.9926701L5,4.00732994C5,2.89833832,5.8992496,2,7.0085302,2L17,2 17,8.00189865C17,9.11329365,17.8980806,10,19.0059191,10L24,10 24,19.4981633C23.2304079,19.1772281 22.3859009,19 21.5,19 17.9101489,19 15,21.9101489 15,25.5 15,26.7886423 15.3749964,27.9896995 16.0218178,29L16.0218178,29 16.0218178,29z M18,2L18,7.99707067C18,8.55097324,18.4509752,9,18.990778,9L24,9 18,2 18,2z M21.5,31C24.5375663,31 27,28.5375663 27,25.5 27,22.4624337 24.5375663,20 21.5,20 18.4624337,20 16,22.4624337 16,25.5 16,28.5375663 18.4624337,31 21.5,31L21.5,31z
+    </Geometry>
+    <Geometry x:Key="DeletePage">
+        M21.5,26.2071068L19.3786797,28.3284271 18.6715729,27.6213203 20.7928932,25.5 18.6715729,23.3786797 19.3786797,22.6715729 21.5,24.7928932 23.6213203,22.6715729 24.3284271,23.3786797 22.2071068,25.5 24.3284271,27.6213203 23.6213203,28.3284271 21.5,26.2071068 21.5,26.2071068z M16.0218178,29L6.99742191,29C5.89092539,29,5,28.1012878,5,26.9926701L5,4.00732994C5,2.89833832,5.8992496,2,7.0085302,2L17,2 17,8.00189865C17,9.11329365,17.8980806,10,19.0059191,10L24,10 24,19.4981633C23.2304079,19.1772281 22.3859009,19 21.5,19 17.9101489,19 15,21.9101489 15,25.5 15,26.7886423 15.3749964,27.9896995 16.0218178,29L16.0218178,29 16.0218178,29z M18,2L18,7.99707067C18,8.55097324,18.4509752,9,18.990778,9L24,9 18,2 18,2z M21.5,31C24.5375663,31 27,28.5375663 27,25.5 27,22.4624337 24.5375663,20 21.5,20 18.4624337,20 16,22.4624337 16,25.5 16,28.5375663 18.4624337,31 21.5,31L21.5,31z
+   </Geometry>
+    <Geometry x:Key="EditPage">
+        M26.4432278,12.1503345L15.1570131,23.4499064 15.1570131,23.4499064 12.5514465,20.8443397 23.8435383,9.55064513 26.4432278,12.1503345 26.4432278,12.1503345z M27.1499164,11.4428096L28.8790954,9.71158405C29.269069,9.32114892,29.266195,8.68650423,28.8743,8.29568497L27.6944866,7.11910998C27.3018646,6.72756564,26.6692577,6.72452466,26.2779126,7.11592531L24.5505949,8.84348817 27.1499164,11.4428096 27.1499164,11.4428096z M11.9037061,21.6108129L11.2641602,24.7235103 14.3990645,24.1061713 11.9037061,21.6108129 11.9037061,21.6108129 11.9037061,21.6108129z M22,18L22,28.0025781C22,29.1090746,21.1057238,30,20.0025781,30L4.99742191,30C3.89092539,30,3,29.1012878,3,27.9926701L3,5.00732994C3,3.89833832,3.8992496,3,5.0085302,3L15,3 15,9.00189865C15,10.1132936,15.8980806,11,17.0059191,11L21,11 25.5801067,6.41989327C26.372781,5.62721897,27.6313906,5.6313906,28.4102504,6.41025036L29.5897496,7.58974962C30.3661881,8.36618809,30.3642921,9.63570785,29.5801067,10.4198932L22,18 22,18z M16,3L16,8.99707067C16,9.55097324,16.4509752,10,16.990778,10L22,10 16,3 16,3z
+    </Geometry>
+    <Geometry x:Key="EditingMode">
+        M253 684 c-73 -75 -102 -124 -74 -124 5 0 135 -126 289 -280 166 -165 288 -280 299 -280 10 0 52 34 93 75 41 41 81 75 88 75 6 0 12 9 12 20 0 11 -6 20 -13 20 -7 0 -143 131 -302 290 -159 160 -293 290 -299 289 -6 0 -48 -38 -93 -85z M108 753 c-3 -43 -3 -84 0 -90 6 -20 30 -15 37 6 3 11 37 49 75 84 37 36 66 68 63 71 -4 3 -43 6 -89 6 l-82 0 -4 -77z M110 925 l0 -35 330 0 330 0 0 35 0 35 -330 0 -330 0 0 -35z 
+    </Geometry>
+    
+    <Storyboard x:Key="Storyboard1">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Margin.Left" >
+            <EasingDoubleKeyFrame KeyTime="0:0:3" Value="-173">
+                <EasingDoubleKeyFrame.EasingFunction>
+                    <BounceEase Bounces="5" EasingMode="EaseOut"/>
+                </EasingDoubleKeyFrame.EasingFunction>
+            </EasingDoubleKeyFrame>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+ 
+  
+    <Style x:Key="FlatComboBoxStyle" BasedOn="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" TargetType="{x:Type ComboBox}">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style x:Key="RoundBorderStyle" TargetType="{x:Type ContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContentControl}"  >
+                    <Border HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" CornerRadius="10" BorderThickness="1" BorderBrush="Gray" >
+                        <Grid>
+                            <Grid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=ClipMask}" Stretch="None" />
+                            </Grid.OpacityMask>
+                            <Border x:Name="ClipMask" Background="White" CornerRadius="10" />
+                            <ContentPresenter />
+                        </Grid>
+                    </Border>
+                </ControlTemplate >
+            </Setter.Value>
+        </Setter>            
+    </Style>
+
+    <!--make all ellipses to circle-->
+    <Style x:Key="ContentCtrl" TargetType="{x:Type ContentControl}">
+      <Setter Property="Background" Value="Red"/>
+      <Setter Property="Foreground" Value="Green"/>
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type ContentControl}">
+            <Grid>
+              <!--Keep the Ellipse a circle when ContentControl.Width is set.-->
+              <Ellipse Width="{TemplateBinding Height}"
+                       Height="{TemplateBinding Height}"
+                       Fill="{TemplateBinding Background}"/>
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+
+    <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+        <Border CornerRadius="0" BorderThickness="2" BorderBrush="DarkGray" Background="#FF92C6F9" Padding="2" HorizontalAlignment="Left" Margin="5" Tag="{Binding Value}"  >
+            <ContentPresenter/>
+        </Border>
+    </ControlTemplate>
+
+
+    <Style x:Key="DialogStyle" TargetType="{x:Type Window}">
+        <Setter Property="WindowStyle" Value="None"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="ResizeMode" Value="NoResize"></Setter>
+        <Setter Property="ShowInTaskbar" Value="False"></Setter>
+    </Style>
+
+    <Style x:Key="MyListViewItemStyle"  TargetType="ListViewItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <!--change ListViewItem style-->
+                <ControlTemplate TargetType="ListViewItem" >
+                    <Border CornerRadius="0" BorderThickness="1" BorderBrush="DarkGray" Background="WhiteSmoke" Padding="2" HorizontalAlignment="Left" Margin="5"> <!--Tag="{Binding Value}" >-->
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="true" />
+                    <!--<Condition Property="Selector.IsSelectionActive" Value="true" />-->
+                </MultiTrigger.Conditions>
+                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="Block"  TargetType="{x:Type ContentControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Canvas >
+                        <!--<Polygon Stroke="Black"                                                             
+                                 Width="{TemplateBinding ActualWidth}"                             
+                                 Height="{TemplateBinding ActualHeight}" 
+                                  Points="0,0  100,100 200,200"
+                                 />-->
+                        <Rectangle Canvas.Left="0" Canvas.Top="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="{TemplateBinding ActualWidth}" 
+                            Height="{TemplateBinding ActualHeight}" 
+                            RadiusY="5" 
+                            RadiusX="5" 
+                            Stroke="Black"  
+                            Fill="White"  />
+                        <ContentPresenter 
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Cursor="{TemplateBinding Cursor}"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Width="{TemplateBinding ActualWidth}" 
+                            Height="{TemplateBinding ActualHeight}" 
+                            />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="MyToggle"  TargetType="{x:Type ToggleButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Image x:Name="img" Margin="10,10,10,10" >
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup>
+                                            <DrawingGroup.Children>
+                                                <GeometryDrawing x:Name="Pause">
+                                                    <GeometryDrawing.Geometry>
+                                                        <GeometryGroup>
+                                                            <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                            <!--<PathGeometry  FillRule="Nonzero" Figures="M32,5C46.888,5 59,17.112 59,32 59,46.888 46.888,59 32,59 17.112,59 5,46.888 5,32 5,17.112 17.112,5 32,5 M32,2C15.433,2 2,15.432 2,32 2,48.568 15.433,62 32,62 48.567,62 62,48.568 62,32 62,15.432 48.567,2 32,2L32,2z" />
+                                                            <PathGeometry FillRule="Nonzero" Figures="M39,17.563C36.25,17.563,34,19.813,34,22.563L34,41.438C34,44.188 36.25,46.438 39,46.438 41.75,46.438 44,44.188 44,41.438L44,22.563C44,19.813,41.75,17.563,39,17.563z M41,41.438C41,42.538 40.1,43.438 39,43.438 37.9,43.438 37,42.538 37,41.438L37,22.563C37,21.463 37.9,20.563 39,20.563 40.1,20.563 41,21.463 41,22.563L41,41.438z" />
+                                                            <PathGeometry FillRule="Nonzero" Figures="M25,17.563C22.25,17.563,20,19.813,20,22.563L20,41.438C20,44.188 22.25,46.438 25,46.438 27.75,46.438 30,44.188 30,41.438L30,22.563C30,19.813,27.75,17.563,25,17.563z M27,41.438C27,42.538 26.1,43.438 25,43.438 23.9,43.438 23,42.538 23,41.438L23,22.563C23,21.463 23.9,20.563 25,20.563 26.1,20.563 27,21.463 27,22.563L27,41.438z" />-->
+                                                        </GeometryGroup>
+                                                    </GeometryDrawing.Geometry>
+                                                    <GeometryDrawing.Pen>
+                                                        <Pen Thickness="4" Brush="Gray" />
+                                                    </GeometryDrawing.Pen>
+                                                </GeometryDrawing>
+                                            </DrawingGroup.Children>
+                                        </DrawingGroup>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>            
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <ContentPresenter/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="img" Property="Source">
+                                <Setter.Value>
+                                    <DrawingImage>
+                                        <DrawingImage.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup.Children>
+                                                    <GeometryDrawing>
+                                                        <GeometryDrawing.Geometry>
+                                                            <GeometryGroup>
+                                                                <LineGeometry StartPoint="50,75" EndPoint="20,40" />
+                                                                <LineGeometry StartPoint="50,75" EndPoint="80,30" />
+                                                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                            </GeometryGroup>
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Pen>
+                                                            <Pen Thickness="10" Brush="Red" />
+                                                        </GeometryDrawing.Pen>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup.Children>
+                                            </DrawingGroup>
+                                        </DrawingImage.Drawing>
+                                    </DrawingImage>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="img" Property="Source">
+                                <Setter.Value>
+                                    <DrawingImage>
+                                        <DrawingImage.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup.Children>
+                                                    <GeometryDrawing  x:Name="Play" >
+                                                        <GeometryDrawing.Geometry>
+                                                            <GeometryGroup>
+                                                                <LineGeometry StartPoint="50,75" EndPoint="20,40" />
+                                                                <LineGeometry StartPoint="50,75" EndPoint="80,30" />
+                                                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                                
+                                                                <!--<PathGeometry FillRule="Nonzero" Figures="M32,5C46.888,5 59,17.112 59,32 59,46.888 46.888,59 32,59 17.112,59 5,46.888 5,32 5,17.112 17.112,5 32,5 M32,2C15.433,2 2,15.432 2,32 2,48.568 15.433,62 32,62 48.567,62 62,48.568 62,32 62,15.432 48.567,2 32,2L32,2z" />
+                                                                <PathGeometry FillRule="Nonzero" Figures="M43.987,28.745L28.013,18.232C25.256,16.418,23,17.635,23,20.935L23,43.06C23,46.36,25.259,47.581,28.021,45.774L43.98,35.33C46.741,33.521,46.744,30.559,43.987,28.745z M41.858,33.124L27.673,42.407C26.753,43.01,26,42.603,26,41.503L26,22.491C26,21.391,26.752,20.986,27.671,21.591L41.861,30.929C42.78,31.533,42.779,32.521,41.858,33.124z" />-->
+                                                            </GeometryGroup>
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Pen>
+                                                            <Pen Thickness="10" Brush="Green" />
+                                                        </GeometryDrawing.Pen>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup.Children>
+                                            </DrawingGroup>
+                                        </DrawingImage.Drawing>
+                                    </DrawingImage>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    
+    
+    <!--BACK Button-->
+    <Style x:Key="BackArrowStyle" TargetType="{x:Type Button}">
+        <Style.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Image x:Name="blockArrow" Source="/Pollux;component/Resources/Images/Back.png" Stretch="Uniform"  />
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True"/>
+                        <Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BitmapEffect" TargetName="blockArrow" >
+                                <Setter.Value>
+                                    <DropShadowBitmapEffect
+                                      ShadowDepth="0"
+                                      Direction="330"
+                                      Color="Black"
+                                      Opacity="0.5"
+                                      Softness="0.25" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True"/>
+                        <Trigger Property="IsEnabled" Value="False"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="SelectedItemStyle" TargetType="{x:Type FrameworkElement }" >
+        <Setter   Property="IsEnabled" Value="True" />
+        <Style.Triggers>
+            <DataTrigger  Binding="{Binding SelectedItem, ElementName=listView}" Value="{x:Null}">
+                <Setter   Property="IsEnabled" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="validationTemplate">
+        <DockPanel>
+            <TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+            <AdornedElementPlaceholder/>
+        </DockPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="GeometryImage" TargetType="{x:Type ContentControl}">
+        <ContentPresenter >
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate>
+                    <Image Height="32" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Image.Source>
+                        <DrawingImage Drawing="{Binding}">
+                        </DrawingImage>
+                    </Image.Source>
+                    </Image>
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>                
+    </ControlTemplate>
+    <DataTemplate x:Key="HeaderTemplateArrowUp">
+        <DockPanel >
+            <ContentPresenter Content="{Binding}" DockPanel.Dock="Left" />
+            <Path x:Name="arrow" HorizontalAlignment="Right" Margin="5,5,5,5" MinWidth="12" DockPanel.Dock="Right"
+       StrokeThickness = "1"                                     
+       Fill            = "Gray"
+       Data            = "M 0,8 L 12,8 L 6,0 L 0,8" Stretch="Uniform"/>
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="HeaderTemplateArrowDown">
+        <DockPanel x:Name="Container">
+            <ContentPresenter x:Name="Header" Content="{Binding}"  DockPanel.Dock="Left" HorizontalAlignment="Left" />
+            <Path x:Name="arrow" 
+                                  HorizontalAlignment="Right" Margin="5,5,5,5" Width="12"  DockPanel.Dock="Right"
+                                  StrokeThickness = "1" Fill = "Gray" Data = "M 0,0 L 6,8 L 12,0 L 0,0"  Stretch="Uniform"/>
+        </DockPanel>
+    </DataTemplate>
+</ResourceDictionary>
