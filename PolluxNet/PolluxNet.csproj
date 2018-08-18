@@ -1,20 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34E19565-7BEA-4DF3-9E88-D574ACF905BC}</ProjectGuid>
+    <ProjectGuid>{81A03EF8-0240-44D4-8E0B-1BDCC17DBFD2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pollux</RootNamespace>
-    <AssemblyName>Pollux</AssemblyName>
+    <RootNamespace>PolluxNet</RootNamespace>
+    <AssemblyName>PolluxNet</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">D:\PROJECT\RS2\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,13 +28,61 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Expression.Blend.Sdk.WPF.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Animations\GridLengthAnimation.cs" />
+    <Compile Include="Async\AsyncLazy.cs" />
     <Compile Include="Async\DataProxy.cs" />
     <Compile Include="Async\NotifyTaskCompletion.cs" />
-    <Compile Include="Async\AsyncLazy.cs" />
     <Compile Include="Behavior\Behavior.cs" />
     <Compile Include="Behavior\BindVisualStateBehavior.cs" />
     <Compile Include="Behavior\DatePickerCalendar.cs" />
@@ -47,10 +90,9 @@
     <Compile Include="Behavior\ViewModel.LoadingIndicatorEx.cs" />
     <Compile Include="Behavior\VisualStateUtilities.cs" />
     <Compile Include="Binding\BindingHelper.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Controls\LoadingIndicator.cs" />
     <Compile Include="Controls\Wizard\MainWindow.xaml.cs" />
     <Compile Include="Controls\Wizard\TabIndexConverter.cs" />
@@ -65,32 +107,32 @@
     <Compile Include="Converter\NullToVisibleConverter.cs" />
     <Compile Include="Converter\ResourceKeyConverter.cs" />
     <Compile Include="Converter\SnapshotConverter.cs" />
-    <Compile Include="Converter\常用Converters.cs" />
     <Compile Include="Converter\StreamToImageConverter.cs" />
     <Compile Include="Converter\StringFormatConverter.cs" />
     <Compile Include="Converter\TristateConverter.cs" />
     <Compile Include="Converter\TypeOfConverter.cs" />
     <Compile Include="Converter\ValueToStateNameConverter.cs" />
     <Compile Include="Converter\XmlConverter.cs" />
+    <Compile Include="Converter\常用Converters.cs" />
     <Compile Include="DynamicWrapper\DynamicWrapper.cs" />
     <Compile Include="DynamicWrapper\PropertyBag.cs" />
-    <Compile Include="DynamicXml.cs" />
     <Compile Include="EntityFramework\DatabaseHelper.cs" />
-    <Compile Include="Extension\AsyncExtension.cs" />
     <Compile Include="EntityFramework\Ef6IncludeExtension.cs" />
+    <Compile Include="Extension\AsyncExtension.cs" />
+    <Compile Include="Extension\HttpExtension.cs" />
     <Compile Include="Helper\ByteArrayHelper.cs" />
     <Compile Include="Helper\DataReaderHelper.cs" />
     <Compile Include="Helper\DateTimeHelper.cs" />
     <Compile Include="Helper\EmailHelper.cs" />
-    <Compile Include="Helper\FolderHelper.cs" />
-    <Compile Include="Helper\SystemHelpers.cs" />
+    <Compile Include="Helper\EncryptionHelper.cs" />
     <Compile Include="Helper\EnumHelper.cs" />
-    <Compile Include="Helper\TaskEx.cs" />
+    <Compile Include="Helper\FolderHelper.cs" />
     <Compile Include="Helper\MapiMailMessage.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Helper\ReflectionHelper.cs" />
     <Compile Include="Helper\StatisticsEx.cs" />
-    <Compile Include="Extension\HttpExtension.cs" />
+    <Compile Include="Helper\SystemHelpers.cs" />
+    <Compile Include="Helper\TaskEx.cs" />
     <Compile Include="Language\CultureHelper.cs" />
     <Compile Include="Locator\Locator.cs" />
     <Compile Include="Markup\CallMarkup.cs" />
@@ -111,7 +153,8 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\Wizard\WizardTabItemStyle.xaml">
@@ -179,14 +222,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\ToggleButtonCircleStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\WizardTabStyle\WizardProgressStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\WizardTabStyle\WizardCircleStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\WizardTabStyle\WizardProgressStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -195,14 +238,6 @@
     <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>此專案參照此電腦中缺少的  NuGet 套件。啟用「NuGet 套件還原」
-      以便下載。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案為 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

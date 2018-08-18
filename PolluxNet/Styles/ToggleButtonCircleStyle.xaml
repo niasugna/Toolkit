@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity">
+    <Style x:Key="ToggleButtonCircleStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Image x:Name="img" Margin="{TemplateBinding Padding}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            <Image.Source>
+                                <DrawingImage>
+                                    <DrawingImage.Drawing>
+                                        <DrawingGroup>
+                                            <DrawingGroup.Children>
+                                                <GeometryDrawing x:Name="Pause">
+                                                    <GeometryDrawing.Geometry>
+                                                        <GeometryGroup>
+                                                            <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                            <!--
+                                                                <PathGeometry  FillRule="Nonzero" Figures="M32,5C46.888,5 59,17.112 59,32 59,46.888 46.888,59 32,59 17.112,59 5,46.888 5,32 5,17.112 17.112,5 32,5 M32,2C15.433,2 2,15.432 2,32 2,48.568 15.433,62 32,62 48.567,62 62,48.568 62,32 62,15.432 48.567,2 32,2L32,2z" />
+                                                                <PathGeometry FillRule="Nonzero" Figures="M39,17.563C36.25,17.563,34,19.813,34,22.563L34,41.438C34,44.188 36.25,46.438 39,46.438 41.75,46.438 44,44.188 44,41.438L44,22.563C44,19.813,41.75,17.563,39,17.563z M41,41.438C41,42.538 40.1,43.438 39,43.438 37.9,43.438 37,42.538 37,41.438L37,22.563C37,21.463 37.9,20.563 39,20.563 40.1,20.563 41,21.463 41,22.563L41,41.438z" />
+                                                                <PathGeometry FillRule="Nonzero" Figures="M25,17.563C22.25,17.563,20,19.813,20,22.563L20,41.438C20,44.188 22.25,46.438 25,46.438 27.75,46.438 30,44.188 30,41.438L30,22.563C30,19.813,27.75,17.563,25,17.563z M27,41.438C27,42.538 26.1,43.438 25,43.438 23.9,43.438 23,42.538 23,41.438L23,22.563C23,21.463 23.9,20.563 25,20.563 26.1,20.563 27,21.463 27,22.563L27,41.438z" />
+                                                            -->
+                                                        </GeometryGroup>
+                                                    </GeometryDrawing.Geometry>
+                                                    <GeometryDrawing.Pen>
+                                                        <Pen Brush="{DynamicResource AccentColorBrush}" Thickness="5" />
+                                                    </GeometryDrawing.Pen>
+                                                </GeometryDrawing>
+                                            </DrawingGroup.Children>
+                                        </DrawingGroup>
+                                    </DrawingImage.Drawing>
+                                </DrawingImage>
+                            </Image.Source>
+                        </Image>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ContentPresenter />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="img" Property="Source">
+                                <Setter.Value>
+                                    <DrawingImage>
+                                        <DrawingImage.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup.Children>
+                                                    <GeometryDrawing >
+                                                        <GeometryDrawing.Geometry>
+                                                            <GeometryGroup>
+                                                                <LineGeometry StartPoint="50,75" EndPoint="20,40" />
+                                                                <LineGeometry StartPoint="50,75" EndPoint="80,30" />
+                                                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                                                            </GeometryGroup>
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Pen>
+                                                            <Pen Brush="Red" Thickness="10" />
+                                                        </GeometryDrawing.Pen>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup.Children>
+                                            </DrawingGroup>
+                                        </DrawingImage.Drawing>
+                                    </DrawingImage>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="img" Property="Source">
+                                <Setter.Value>
+                                    <DrawingImage>
+                                        <DrawingImage.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup.Children>
+                                                    <GeometryDrawing x:Name="Play">
+                                                        <GeometryDrawing.Geometry>
+                                                            <GeometryGroup>
+                                                                <LineGeometry StartPoint="50,75" EndPoint="20,40" />
+                                                                <LineGeometry StartPoint="50,75" EndPoint="80,30" />
+                                                                <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+
+                                                                <!--
+                                                                    <PathGeometry FillRule="Nonzero" Figures="M32,5C46.888,5 59,17.112 59,32 59,46.888 46.888,59 32,59 17.112,59 5,46.888 5,32 5,17.112 17.112,5 32,5 M32,2C15.433,2 2,15.432 2,32 2,48.568 15.433,62 32,62 48.567,62 62,48.568 62,32 62,15.432 48.567,2 32,2L32,2z" />
+                                                                    <PathGeometry FillRule="Nonzero" Figures="M43.987,28.745L28.013,18.232C25.256,16.418,23,17.635,23,20.935L23,43.06C23,46.36,25.259,47.581,28.021,45.774L43.98,35.33C46.741,33.521,46.744,30.559,43.987,28.745z M41.858,33.124L27.673,42.407C26.753,43.01,26,42.603,26,41.503L26,22.491C26,21.391,26.752,20.986,27.671,21.591L41.861,30.929C42.78,31.533,42.779,32.521,41.858,33.124z" />
+                                                                -->
+                                                            </GeometryGroup>
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Pen>
+                                                            <Pen Brush="{DynamicResource AccentColorBrush}" Thickness="5" />
+                                                        </GeometryDrawing.Pen>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup.Children>
+                                            </DrawingGroup>
+                                        </DrawingImage.Drawing>
+                                    </DrawingImage>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>
