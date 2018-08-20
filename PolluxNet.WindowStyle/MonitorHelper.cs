@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
-namespace IVSAnalysisResultPlayer
+namespace PolluxNet.WindowStyle
 {
     public class MonitorHelper
     {

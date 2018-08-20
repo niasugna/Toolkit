@@ -117,7 +117,7 @@ namespace Pollux.ViewModel
             return;
         }
 
-        public BusyViewModelBase()
+        protected BusyViewModelBase()
         {
             IsAuthorized = true;
         }
@@ -151,7 +151,7 @@ namespace Pollux.ViewModel
                 var modelType = viewModel.GetType();
                 var viewClassName = modelType.Name.Replace("ViewModel", "View");
                 var classes = modelType.Assembly.GetTypes().Where(t => t.IsClass);
-                var viewType = classes.Where(t=>t.Name == viewClassName).SingleOrDefault();
+                var viewType = classes.SingleOrDefault(t => t.Name == viewClassName);
                 return Activator.CreateInstance(viewType);
             }
             catch (Exception e)
@@ -161,7 +161,7 @@ namespace Pollux.ViewModel
             }
         }
 
-        public object _MyView = null;
+        public object _MyView;
         public object MyView
         {
             get

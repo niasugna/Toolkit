@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pollux", "Mvvm\Pollux.cspro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolluxNet", "PolluxNet\PolluxNet.csproj", "{81A03EF8-0240-44D4-8E0B-1BDCC17DBFD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolluxNet.WindowStyle", "PolluxNet.WindowStyle\PolluxNet.WindowStyle.csproj", "{62187185-C928-4525-9CB2-E1B4D986D397}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolluxNet.WindowStyle.Test", "Pollux.WindowStyle.Test\PolluxNet.WindowStyle.Test.csproj", "{46694AE7-FF48-4AFB-B74D-1677B86F22E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{81A03EF8-0240-44D4-8E0B-1BDCC17DBFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81A03EF8-0240-44D4-8E0B-1BDCC17DBFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81A03EF8-0240-44D4-8E0B-1BDCC17DBFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62187185-C928-4525-9CB2-E1B4D986D397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62187185-C928-4525-9CB2-E1B4D986D397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62187185-C928-4525-9CB2-E1B4D986D397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62187185-C928-4525-9CB2-E1B4D986D397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46694AE7-FF48-4AFB-B74D-1677B86F22E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46694AE7-FF48-4AFB-B74D-1677B86F22E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46694AE7-FF48-4AFB-B74D-1677B86F22E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46694AE7-FF48-4AFB-B74D-1677B86F22E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

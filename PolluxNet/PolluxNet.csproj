@@ -144,10 +144,6 @@
     <Compile Include="Mvvm\ErrorContainer.cs" />
     <Compile Include="Mvvm\PropertySupport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Styles\MetroWindowStyle.cs" />
-    <Compile Include="Styles\MonitorHelper.cs" />
-    <Compile Include="ViewModel\BoolToVisibility.cs" />
-    <Compile Include="ViewModel\CheckableModel.cs" />
     <Compile Include="ViewModel\DataAnnotationValidationViewModel.cs" />
     <Compile Include="ViewModel\PropertyValidatedBase.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -210,10 +206,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\MaterialDesign\VolumnStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\MetroWindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

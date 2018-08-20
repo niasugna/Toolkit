@@ -108,7 +108,7 @@ namespace Pollux.Mvvm
             if(type==null)
                 return depObj.GetValue(FrameworkElement.DataContextProperty) ?? depObj.GetValue(FrameworkContentElement.DataContextProperty);
 
-            var method = typeof(VisualTreeHelperEx).GetMethods().Where(m => m.Name == "FindVisualParent").First();
+            var method = typeof(VisualTreeHelperEx).GetMethods().First(m => m.Name == "FindVisualParent");
             var gm = method.MakeGenericMethod(type);
             var parent = gm.Invoke(depObj, new object[]{depObj}) as FrameworkElement;
 

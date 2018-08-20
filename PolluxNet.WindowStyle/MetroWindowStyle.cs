@@ -7,15 +7,16 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
-using Pollux.Helper;
+using WpfScreenHelper;
 
-
-namespace IVSAnalysisResultPlayer
+namespace PolluxNet.WindowStyle
 {
     partial class MetroWindowStyle
     {
         bool restoreIfMove = false;
-        private bool bMaxMized { get; set; } = true;
+        private double fullScreenHeight;
+        private double maxScreenHeight;
+        private bool bMaxMized = true;
         private void PART_TITLEBAR_MouseMove(object sender, MouseEventArgs e)
         {
             if (restoreIfMove && e.LeftButton == MouseButtonState.Pressed)
@@ -29,7 +30,7 @@ namespace IVSAnalysisResultPlayer
                 var width = window.RestoreBounds.Width;
                 var x = mouseX - width / 2;
                 IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-                System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+                Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
 
                 var screen = currentMonitor.WorkingArea;
                 if (x < 0)
@@ -58,7 +59,7 @@ namespace IVSAnalysisResultPlayer
                 if (window.WindowState == WindowState.Maximized)
                 {
                     IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-                    System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+                    Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
                     window.MaxHeight = currentMonitor.WorkingArea.Height;// currentMonitor.WorkingArea.Height + window.Height - currentMonitor.Bounds.Height;
                     //window.WindowState = WindowState.Maximized;
                 }
@@ -80,7 +81,7 @@ namespace IVSAnalysisResultPlayer
                     else
                     {
                         IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-                        System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+                        Screen currentMonitor =Screen.FromHandle(mainWindowPtr);
                         window.MaxHeight = currentMonitor.WorkingArea.Height;
                         window.WindowState = WindowState.Maximized;
                         bMaxMized = true;
@@ -137,7 +138,7 @@ namespace IVSAnalysisResultPlayer
             if(IsMaximize(window) == false)
             {
                 IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-                System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+                Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
                 window.MaxHeight = currentMonitor.WorkingArea.Height;
                 window.WindowState = WindowState.Maximized;
             }
@@ -151,19 +152,19 @@ namespace IVSAnalysisResultPlayer
         private bool IsMaximize(Window window)
         {
             IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-            System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+            Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
             return window.MaxHeight == currentMonitor.WorkingArea.Height && window.Width == currentMonitor.Bounds.Width;
         }
         private bool IsFullScreen(Window window)
         {
             IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-            System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+            Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
             return window.Height == currentMonitor.Bounds.Height && window.Width == currentMonitor.Bounds.Width;
         }
         private void FillFullScreen(Window window)
         {
             IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-            System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+            Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
 
             window.MaxWidth = double.PositiveInfinity;
             window.MaxHeight = currentMonitor.Bounds.Height;
@@ -171,20 +172,20 @@ namespace IVSAnalysisResultPlayer
             window.WindowState = WindowState.Maximized;
             //window.Show();
 
-            Win32Helper.MoveWindow(mainWindowPtr, 0, 0, (int)window.Width, currentMonitor.Bounds.Height, true);
+            Win32Helper.MoveWindow(mainWindowPtr, 0, 0, (int)window.Width, (int)currentMonitor.Bounds.Height, true);
             Win32Helper.SetForegroundWindow(mainWindowPtr);
         }
 
         private void FillWorkArea(Window window)
         {
             IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
-            System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+            Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
 
             window.MaxHeight = currentMonitor.WorkingArea.Height;
             window.MaxWidth = currentMonitor.WorkingArea.Width;
             window.WindowState = WindowState.Maximized;
 
-            Win32Helper.MoveWindow(mainWindowPtr, 0, 0, currentMonitor.Bounds.Width, currentMonitor.WorkingArea.Height, true);
+            Win32Helper.MoveWindow(mainWindowPtr, 0, 0, (int)currentMonitor.Bounds.Width, (int)currentMonitor.WorkingArea.Height, true);
             Win32Helper.SetForegroundWindow(mainWindowPtr);
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
@@ -196,7 +197,7 @@ namespace IVSAnalysisResultPlayer
 
             IntPtr mainWindowPtr = new WindowInteropHelper(window).Handle;
             //fullScreenHeight = MonitorHelper.GetCurrentMonitor(mainWindowPtr).Bounds.Height * Dpi.HeightFactor;
-            System.Windows.Forms.Screen currentMonitor = System.Windows.Forms.Screen.FromHandle(mainWindowPtr);
+            Screen currentMonitor = Screen.FromHandle(mainWindowPtr);
 
             if (IsFullScreen(window) == false)
             {
@@ -290,19 +291,19 @@ namespace IVSAnalysisResultPlayer
             /// <summary>
             /// Maximizes the specified window.
             /// </summary>
-            Maximize = 3, // is this the right date?
+            Maximize = 3, // is this the right value?
             /// <summary>
             /// Activates the window and displays it as a maximized window.
             /// </summary>       
             ShowMaximized = 3,
             /// <summary>
-            /// Displays a window in its most recent size and position. This date 
+            /// Displays a window in its most recent size and position. This value 
             /// is similar to <see cref="Win32.ShowWindowCommand.Normal"/>, except 
             /// the window is not activated.
             /// </summary>
             ShowNoActivate = 4,
             /// <summary>
-            /// Activates the window and displays it in its view size and position. 
+            /// Activates the window and displays it in its current size and position. 
             /// </summary>
             Show = 5,
             /// <summary>
@@ -311,13 +312,13 @@ namespace IVSAnalysisResultPlayer
             /// </summary>
             Minimize = 6,
             /// <summary>
-            /// Displays the window as a minimized window. This date is similar to
+            /// Displays the window as a minimized window. This value is similar to
             /// <see cref="Win32.ShowWindowCommand.ShowMinimized"/>, except the 
             /// window is not activated.
             /// </summary>
             ShowMinNoActive = 7,
             /// <summary>
-            /// Displays the window in its view size and position. This date is 
+            /// Displays the window in its current size and position. This value is 
             /// similar to <see cref="Win32.ShowWindowCommand.Show"/>, except the 
             /// window is not activated.
             /// </summary>
@@ -329,7 +330,7 @@ namespace IVSAnalysisResultPlayer
             /// </summary>
             Restore = 9,
             /// <summary>
-            /// Sets the show state based on the SW_* date specified in the 
+            /// Sets the show state based on the SW_* value specified in the 
             /// STARTUPINFO structure passed to the CreateProcess function by the 
             /// program that started the application.
             /// </summary>

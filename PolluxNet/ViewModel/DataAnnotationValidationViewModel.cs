@@ -67,12 +67,12 @@ namespace Pollux.ViewModel
         {
             errorsContainer.SetErrors(propExpression, errors);
         }
-        private ErrorsContainer<ValidationResult> errorsContainer = null;
+        private readonly ErrorsContainer<ValidationResult> errorsContainer;
 
         public DataAnnotationViewModel()
         {
             if (errorsContainer == null)
-                errorsContainer = new ErrorsContainer<ValidationResult>(propertyName => RaiseErrorsChanged(propertyName));
+                errorsContainer = new ErrorsContainer<ValidationResult>(RaiseErrorsChanged);
 
         }
 
@@ -82,7 +82,7 @@ namespace Pollux.ViewModel
             get
             {
                 if (errorsContainer == null)
-                    return new ErrorsContainer<ValidationResult>(propertyName => RaiseErrorsChanged(propertyName));
+                    return new ErrorsContainer<ValidationResult>(RaiseErrorsChanged);
 
                 else
                     return errorsContainer;
